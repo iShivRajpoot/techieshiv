@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Article — TECHIE SHIV</title>
+<meta name="description" content="Articles by Techie Shiv: gadget reviews, tips and AI guides.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html">TECHIE <span>SHIV</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html#about">About</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="index.html#videos">Videos</a>
+      <a href="index.html#store">Store</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme"><i class="fas fa-moon ico-moon"></i><i class="fas fa-sun ico-sun"></i></button>
+      <button class="icon-btn hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a href="index.html#about">About</a>
+  <a href="index.html#reviews">Reviews</a>
+  <a href="index.html#articles">Articles</a>
+  <a href="index.html#videos">Videos</a>
+  <a href="index.html#store">Store</a>
+  <a href="index.html#work">Work</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+<main class="article" id="article-root">
+  <a class="back" href="index.html#articles"><i class="fas fa-arrow-left"></i>All articles</a>
+  <p class="meta" id="loading">Loading…</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Shiv Rajpoot — Think Tech. Think Shiv.</p>
+    <p>Reviews are my honest opinion. Some links are affiliate links.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+(async function () {
+  const { el, fetchJSON, formatDate } = window.Site;
+  const root = document.getElementById('article-root');
+  const back = root.querySelector('.back');
+
+  function notFound() {
+    root.replaceChildren(back, el('h1', { style: 'font-size:32px;margin:12px 0' }, 'Article not found'),
+      el('p', { class: 'meta' }, 'This link may be old or mistyped.'),
+      el('p', { style: 'margin-top:20px' }, el('a', { class: 'btn btn-primary', href: 'index.html#articles' }, 'Browse all articles')));
+    document.title = 'Article not found — TECHIE SHIV';
+  }
+
+  const slug = new URLSearchParams(location.search).get('slug') || '';
+  if (!/^[a-z0-9-]+$/.test(slug)) return notFound();
+
+  const list = await fetchJSON('articles.json');
+  const meta = list.find(a => a && a.slug === slug);
+  if (!meta) return notFound();
+
+  let html = '';
+  try {
+    const r = await fetch('articles/' + slug + '.html?v=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    html = await r.text();
+  } catch (e) { return notFound(); }
+
+  document.title = meta.title + ' — TECHIE SHIV';
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc && meta.summary) desc.setAttribute('content', meta.summary);
+
+  const url = location.href;
+  const text = meta.title + ' — Techie Shiv';
+  const body = el('div', { class: 'prose' });
+  body.innerHTML = html; // article files are written by the site owner
+
+  const copyBtn = el('button', { class: 'btn btn-sm btn-ghost', type: 'button' }, el('i', { class: 'fas fa-link' }), 'Copy link');
+  copyBtn.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(url); copyBtn.lastChild.textContent = 'Copied!'; }
+    catch (e) { copyBtn.lastChild.textContent = 'Copy failed'; }
+    setTimeout(() => { copyBtn.lastChild.textContent = 'Copy link'; }, 1800);
+  });
+
+  const others = list.filter(a => a && a.slug && a.slug !== slug)
+    .sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 3);
+
+  root.replaceChildren(
+    back,
+    el('div', { class: 'meta' },
+      meta.tag && el('span', { class: 'tagpill' }, meta.tag),
+      meta.sample && el('span', { class: 'tagpill warn' }, 'Sample'),
+      meta.date && el('span', null, formatDate(meta.date)),
+      meta.readTime && el('span', null, '· ' + meta.readTime + ' min read')
+    ),
+    el('h1', null, meta.title),
+    body,
+    el('div', { class: 'share' },
+      el('strong', null, 'Share:'),
+      el('a', { class: 'btn btn-sm btn-ghost', target: '_blank', rel: 'noopener', href: 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url) }, el('i', { class: 'fab fa-whatsapp' }), 'WhatsApp'),
+      el('a', { class: 'btn btn-sm btn-ghost', target: '_blank', rel: 'noopener', href: 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text) }, el('i', { class: 'fab fa-telegram-plane' }), 'Telegram'),
+      copyBtn
+    ),
+    others.length && el('div', { class: 'article-more' },
+      el('h2', null, 'More articles'),
+      el('div', { class: 'grid' }, others.map(a =>
+        el('a', { class: 'card acard', href: 'article.html?slug=' + encodeURIComponent(a.slug) },
+          el('div', { class: 'meta' }, a.tag && el('span', { class: 'tagpill' }, a.tag), a.date && el('span', null, formatDate(a.date))),
+          el('h3', null, a.title),
+          el('span', { class: 'more' }, 'Read article →')
+        )))
+    )
+  );
+})();
+</script>
+</body>
+</html>

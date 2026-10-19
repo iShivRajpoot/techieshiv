@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Zero to One: Notes on Start Ups, or How to Build the Future",
+    "category": "Books",
+    "badge": "Must Read",
+    "description": "Legendary startup blueprint by Peter Thiel. Essential reading for every modern creator and digital entrepreneur.",
+    "price": 283,
+    "mrp": 499,
+    "image": "Zero to One.png",
+    "imageFallback": "https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/Zero%20to%20One.png",
+    "url": "https://bitli.in/JTDobJx"
+  },
+  {
+    "name": "The Hard Thing About Hard Things by Ben Horowitz",
+    "category": "Books",
+    "badge": "Must Read",
+    "description": "Brutally honest management insights and tactical startup leadership execution guidelines straight from Silicon Valley war stories.",
+    "price": 275,
+    "mrp": 599,
+    "image": "The Hard Thing about Hard Thing.png",
+    "imageFallback": "https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/The%20Hard%20Thing%20about%20Hard%20Thing.png",
+    "url": "https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/"
+  }
+]

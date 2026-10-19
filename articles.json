@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "sample-article",
+    "title": "Sample article — replace me",
+    "date": "2026-10-19",
+    "tag": "Tips",
+    "readTime": 2,
+    "summary": "A placeholder showing how an article card looks. Replace it with your first real article.",
+    "sample": true
+  }
+]

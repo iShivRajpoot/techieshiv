@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Sample Phone — replace me",
+    "category": "Phones",
+    "rating": null,
+    "price": null,
+    "image": "",
+    "summary": "This is a placeholder card that shows how a review will look. Replace it with your first real review.",
+    "pros": ["Write what you genuinely liked", "Keep it short and specific"],
+    "cons": ["Write what disappointed you", "Honest cons build trust"],
+    "video": "",
+    "article": "",
+    "buy": "",
+    "sample": true
+  }
+]
