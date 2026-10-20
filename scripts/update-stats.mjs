@@ -49,6 +49,22 @@ async function total(metric) {
   }
 }
 
+// Daily reach for the last 30 days, used for the chart on the website.
+async function reachDaily() {
+  try {
+    const d = await get('me/insights', { metric: 'reach', period: 'day', since, until });
+    const vals = d.data?.[0]?.values;
+    if (!Array.isArray(vals)) return null;
+    const out = vals
+      .map((x) => ({ d: String(x.end_time).slice(0, 10), v: x.value }))
+      .filter((x) => x.d && Number.isFinite(x.v));
+    return out.length ? out : null;
+  } catch (e) {
+    console.warn(`Could not fetch daily reach: ${e.message}`);
+    return null;
+  }
+}
+
 let followers = null;
 try {
   followers = (await get('me', { fields: 'followers_count' })).followers_count ?? null;
@@ -59,6 +75,7 @@ try {
 const reach = await total('reach');
 const views = await total('views');
 const interactions = await total('total_interactions');
+const dailyReach = await reachDaily();
 
 // Engagement rate = interactions / reach. Instagram's own dashboard may use a
 // slightly different formula, so tweak here if the number differs from yours.
@@ -77,6 +94,7 @@ const stats = {
   reach: reach ?? previous.reach ?? null,
   views: views ?? previous.views ?? null,
   engagement: engagement ?? previous.engagement ?? null,
+  daily_reach: dailyReach ?? previous.daily_reach ?? null,
   period_days: DAYS,
   updated: new Date().toISOString(),
 };
