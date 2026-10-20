@@ -4,605 +4,682 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TECHIE SHIV — Think Tech. Think Shiv.</title>
+<meta name="description" content="Techie Shiv (Shiv Rajpoot) is a tech and AI content creator. Short-form tips, AI tools and productivity for learners, students and creators.">
+<meta name="theme-color" content="#08070D">
+<meta name="author" content="Shiv Rajpoot">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Techie Shiv">
+<meta property="og:title" content="Techie Shiv — Think Tech. Think Shiv.">
+<meta property="og:description" content="Tech and AI content creator. Short-form tips, AI tools and productivity. Open to brand collaborations.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FFD21F'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='800' font-size='30' text-anchor='middle' fill='%2314100A'%3ETS%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Shiv Rajpoot","alternateName":"Techie Shiv","jobTitle":"Tech and AI content creator",
+ "description":"Tech and AI content creator sharing short-form tips, AI tools and productivity.",
+ "sameAs":["https://www.instagram.com/techie.shiv/","https://www.youtube.com/@techie.shiv.","https://t.me/techie_shiv"]}
+</script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ── SYSTEM THEME VARIABLES ── */
-:root[data-theme="dark"] {
-  --bg-main: #030712;
-  --bg-surface: #101827;
-  --bg-surface-hover: rgba(255, 255, 255, 0.04);
-  --bg-store: #050c1a;
-  --bg-pill: #111827;
-  --text-main: #ffffff;
-  --text-muted: #9ca3af;
-  --border-alpha: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.05);
-  --nav-bg: rgba(3, 7, 18, 0.85);
-  --menu-bg: rgba(3, 7, 18, 0.98);
-  --shadow-color: rgba(255, 79, 216, 0.15);
+/* ── TOKENS ── */
+:root{
+  --yellow:#FFD21F;
+  --on-yellow:#14100A;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --wrap:1180px;
+  --gutter:clamp(18px,5vw,48px);
+}
+:root[data-theme="dark"]{
+  --bg:#08070D; --bg2:#0F0C1A; --card:rgba(255,255,255,.05); --card-b:rgba(255,255,255,.11);
+  --text:#F7F5FF; --muted:#A9A3C0; --purple:#8B5CF6; --accent:#FFD21F;
+  --glow:rgba(139,92,246,.50); --glow-y:rgba(255,210,31,.32); --shadow:0 20px 60px -20px rgba(0,0,0,.7);
+  --pill:rgba(14,11,24,.74); --blob1:rgba(139,92,246,.36); --blob2:rgba(255,210,31,.10);
+  --doodle-a:#FFD21F; --doodle-b:#A78BFA; --doodle-o:.20;
+}
+:root[data-theme="light"]{
+  --bg:#FFFFFF; --bg2:#F7F4FF; --card:#FFFFFF; --card-b:rgba(76,29,149,.14);
+  --text:#0B0A12; --muted:#5E5A70; --purple:#6D28D9; --accent:#6D28D9;
+  --glow:rgba(109,40,217,.28); --glow-y:rgba(255,210,31,.5); --shadow:0 18px 50px -24px rgba(76,29,149,.35);
+  --pill:rgba(255,255,255,.86); --blob1:rgba(139,92,246,.16); --blob2:rgba(255,210,31,.24);
+  --doodle-a:#E0B400; --doodle-b:#7C3AED; --doodle-o:.30;
 }
 
-:root[data-theme="light"] {
-  --bg-main: #f9fafb;
-  --bg-surface: #ffffff;
-  --bg-surface-hover: rgba(0, 0, 0, 0.02);
-  --bg-store: #f3f4f6;
-  --bg-pill: #e5e7eb;
-  --text-main: #111827;
-  --text-muted: #4b5563;
-  --border-alpha: rgba(0, 0, 0, 0.08);
-  --border-light: rgba(0, 0, 0, 0.04);
-  --nav-bg: rgba(249, 250, 251, 0.85);
-  --menu-bg: rgba(249, 250, 251, 0.98);
-  --shadow-color: rgba(255, 79, 216, 0.08);
+/* ── BASE ── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;scroll-padding-top:90px}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--font);font-size:17px;line-height:1.7;font-weight:400;
+  overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;transition:background .35s,color .35s;
+  -webkit-font-smoothing:antialiased;
 }
+main{flex:1}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter);position:relative}
+h1,h2,h3{font-weight:700;letter-spacing:-.022em;line-height:1.12;text-wrap:balance}
+h2{font-size:clamp(30px,4.2vw,46px);line-height:1.1}
+h3{font-size:clamp(18px,1.8vw,22px);letter-spacing:-.01em;line-height:1.3;font-weight:700}
+p{text-wrap:pretty}
+.lead{color:var(--muted);max-width:56ch;font-size:clamp(16px,1.5vw,18px);line-height:1.7}
+.view[hidden]{display:none}
 
-:root {
-  --pink: #ff4fd8;
-  --purple: #a855f7;
-  --blue: #3b82f6;
-  --cyan: #06d6f7;
+/* ── NAV (floating glass pill) ── */
+nav{position:fixed;top:12px;left:0;right:0;z-index:50;padding-inline:var(--gutter);pointer-events:none}
+.pill{
+  pointer-events:auto;max-width:var(--wrap);margin:0 auto;height:60px;border-radius:999px;padding:0 10px 0 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:var(--pill);border:1px solid var(--card-b);box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
 }
-
-/* ── ENGINE RESET ── */
-*{ margin:0; padding:0; box-sizing:border-box; }
-@media(pointer:fine){ *{ cursor:none!important; } }
-
-html, body { 
-  max-width: 100%; 
-  overflow-x: hidden; 
-  width: 100%;
-  background: var(--bg-main);
-  color: var(--text-main);
-  font-family: 'Inter', sans-serif;
-  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.logo{font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.logo b{color:var(--yellow);font-weight:800;text-shadow:0 0 18px var(--glow-y)}
+:root[data-theme="light"] .logo b{color:var(--purple);text-shadow:none}
+.nav-r{display:flex;align-items:center;gap:clamp(8px,1.6vw,18px)}
+.links{display:flex;gap:4px}
+.links a{
+  text-decoration:none;font-weight:600;font-size:15px;color:var(--muted);padding:9px 16px;border-radius:999px;
+  transition:color .2s,background .2s;
 }
-
-/* ── THEME TRIGGER BUTTON ── */
-.theme-toggle {
-  background: none; border: none; cursor: pointer; position: relative;
-  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-  border-radius: 12px; background: var(--bg-surface-hover); border: 1px solid var(--border-light);
-  overflow: hidden; transition: transform 0.25s ease, background 0.3s;
+.links a:hover{color:var(--text)}
+.links a[aria-current="page"]{color:var(--text);background:var(--card);box-shadow:inset 0 0 0 1px var(--card-b)}
+.icon-btn{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--card-b);background:var(--card);color:var(--text);
+  display:grid;place-items:center;cursor:pointer;font-size:16px;transition:box-shadow .25s;
 }
-.theme-toggle:hover { transform: scale(1.05); }
-.theme-toggle i { font-size: 18px; position: absolute; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease; }
-
-:root[data-theme="dark"] .fa-sun { transform: translateY(40px) rotate(180deg); opacity: 0; }
-:root[data-theme="dark"] .fa-moon { transform: translateY(0) rotate(0deg); color: var(--cyan); opacity: 1; }
-:root[data-theme="light"] .fa-sun { transform: translateY(0) rotate(0deg); color: #ffb900; opacity: 1; }
-:root[data-theme="light"] .fa-moon { transform: translateY(-40px) rotate(-180deg); opacity: 0; }
-
-/* ── INTERACTIVE MOUSE CURSORS ── */
-#cursor-cross, #cursor-dot{ display:none; }
-#cursor-cross{
-  position:fixed; z-index:99999; pointer-events:none;
-  width:28px; height:28px; transform:translate(-50%,-50%);
-  transition:transform .12s, opacity .15s;
+.icon-btn:hover{box-shadow:0 0 22px var(--glow)}
+.burger{display:none}
+.menu{
+  display:none;position:fixed;top:82px;left:var(--gutter);right:var(--gutter);z-index:49;border-radius:24px;padding:8px 22px 14px;
+  background:var(--pill);border:1px solid var(--card-b);box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
 }
-#cursor-cross::before, #cursor-cross::after{ content:''; position:absolute; background: var(--text-main); border-radius:4px; }
-#cursor-cross::before{ width:2px; height:28px; left:50%; top:0; transform:translateX(-50%); }
-#cursor-cross::after { width:28px; height:2px; top:50%; left:0; transform:translateY(-50%); }
+.menu.open{display:block}
+.menu a{display:block;padding:15px 0;border-bottom:1px solid var(--card-b);text-decoration:none;font-weight:600;font-size:18px}
+.menu a:last-child{border-bottom:0}
+.menu a[aria-current="page"]{color:var(--accent)}
 
-#cursor-dot{
-  position:fixed; z-index:100000; pointer-events:none;
-  width:6px; height:6px; border-radius:50%; background:var(--pink); transform:translate(-50%,-50%);
-  box-shadow:0 0 10px var(--pink),0 0 20px var(--pink);
-  transition:width .2s,height .2s,background .2s;
-}
-#cursor-dot.hovered{ width:10px; height:10px; background:var(--cyan); box-shadow:0 0 14px var(--cyan),0 0 28px var(--cyan); }
-#cursor-cross.hovered{ transform:translate(-50%,-50%) rotate(45deg) scale(1.4); }
-#cursor-cross.hovered::before, #cursor-cross.hovered::after{ background:var(--pink); }
-
-.trail{
-  position:fixed; pointer-events:none; border-radius:50%; z-index:99990;
-  background:radial-gradient(circle,rgba(255,79,216,.45),transparent 70%);
-  transform:translate(-50%,-50%); animation:trail-fade .5s forwards;
-}
-@keyframes trail-fade{
-  0%   { opacity:1; width:14px; height:14px; }
-  100%{ opacity:0; width:2px;  height:2px;  }
-}
-
-/* ── NAVIGATION NAVIGATION MATRIX ── */
-nav{
-  position:fixed; top:0; left:0; right:0; height:68px;
-  display:flex; align-items:center; justify-content:space-between; padding:0 5%;
-  background: var(--nav-bg); backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border-light); z-index:10000;
-  transition: background 0.4s, border-color 0.4s;
-}
-.logo{ font-size:clamp(20px,3vw,30px); font-weight:900; letter-spacing:-1px; white-space:nowrap; color: var(--text-main); }
-.logo span{ color:var(--pink); }
-.nav-right-wrapper { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
-.nav-links{ display:flex; gap:clamp(16px,2vw,30px); }
-.nav-links a{
-  text-decoration:none; color: var(--text-muted); font-weight:600;
-  font-size:clamp(11px,1.2vw,14px); letter-spacing:.4px; text-transform:uppercase; transition:.3s;
-}
-.nav-links a:hover{ color: var(--text-main); }
-
-.hamburger{
-  display:none; flex-direction:column; gap:5px; background:none; border:none; padding:12px; cursor:pointer; position:relative; z-index:10002;
-}
-.hamburger span{ display:block; width:24px; height:2px; background: var(--text-main); border-radius:2px; transition:.3s; }
-
-.mobile-menu{
-  display:none; flex-direction:column; position:fixed; top:0; left:0; right:0; height: auto;
-  background: var(--menu-bg); backdrop-filter:blur(24px); border-bottom:1px solid var(--border-alpha);
-  padding:76px 5% 24px; z-index:9999; gap:0; transition: background 0.4s;
-  max-height:100vh; overflow-y:auto;
-}
-.mobile-menu a{
-  display:block; padding:16px 0; text-decoration:none; color: var(--text-muted);
-  font-weight:600; font-size:16px; border-bottom:1px solid var(--border-light);
-  text-transform:uppercase; letter-spacing:.5px; transition:.3s;
-}
-.mobile-menu a:hover{ color: var(--text-main); }
-.mobile-menu.open{ display:flex; }
-
-/* ── HERO SYSTEM & TEXT EFFECT ── */
-.hero{ min-height:100vh; min-height:100svh; padding:clamp(100px,13vh,140px) 5% clamp(60px,8vh,100px); position:relative; }
-.hero-inner{ max-width:1300px; margin:auto; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(30px,5vw,70px); align-items:center; }
-.eyebrow{
-  display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:999px;
-  background: var(--bg-surface-hover); border:1px solid var(--border-alpha); margin-bottom:24px; font-size:13px;
-}
-.live-dot{ width:8px; height:8px; border-radius:50%; background:#00ff9d; box-shadow:0 0 10px #00ff9d; animation:pulse 2s infinite; }
-@keyframes pulse{ 0%,100%{ box-shadow:0 0 10px #00ff9d; } 50%{ box-shadow:0 0 22px #00ff9d; } }
-
-.hero h1{ font-size:clamp(42px,7.5vw,95px); line-height:.97; font-weight:900; margin-bottom:24px; }
-.gradient{ background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-
-/* TYPEWRITER WRAPPER SYSTEM CONTAINER */
-.typewriter-box { min-height: 52px; margin-bottom: 36px; display: flex; align-items: center; }
-@media(max-width:820px){ .typewriter-box { justify-content: center; min-height: 75px; } }
-
-.hero-sub {
-  font-size: clamp(16px,1.6vw,20px); line-height: 1.6; color: var(--text-muted); font-weight: 500;
-  white-space: pre-wrap; border-right: 3px solid var(--pink); padding-right: 4px;
-  animation: blink-cursor 0.75s step-end infinite; display: inline-block;
-}
-@keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: var(--pink); } }
-
-.hero-btns{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 12px; }
+/* ── BUTTONS / ICONS ── */
 .btn{
-  padding:clamp(13px,1.5vh,18px) clamp(22px,2.5vw,34px); border-radius:14px; text-decoration:none;
-  font-weight:700; color:white; transition:.35s cubic-bezier(.34,1.56,.64,1); font-size:clamp(13px,1.2vw,15px); white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:999px;
+  font-weight:700;font-size:16px;text-decoration:none;transition:transform .2s,box-shadow .25s;cursor:pointer;border:0;
 }
-.btn:hover{ transform:scale(1.06) translateY(-3px); box-shadow:0 16px 36px rgba(255,79,216,.22); }
-.primary{ background:linear-gradient(135deg,var(--pink),var(--purple)); }
-.secondary{ background: var(--bg-surface); border:1px solid var(--border-alpha); color: var(--text-main); }
-
-.socials{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:26px; align-items:center; width: 100%; }
-.social-btn{
-  width:clamp(46px,5vw,56px); height:clamp(46px,5vw,56px); min-width:0; flex:0 0 auto;
-  display:flex; align-items:center; justify-content:center;
-  border-radius:50%; text-decoration:none; color:white; font-size:clamp(20px,2vw,24px);
-  transition:.35s cubic-bezier(.34,1.56,.64,1); box-shadow:0 6px 16px rgba(0,0,0,.18);
+.btn-y{background:var(--yellow);color:var(--on-yellow);box-shadow:0 0 0 1px rgba(255,210,31,.6),0 10px 40px -8px var(--glow-y)}
+.btn-y:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,210,31,.8),0 14px 50px -6px var(--glow-y)}
+.btn-g{background:var(--card);color:var(--text);box-shadow:inset 0 0 0 1px var(--card-b)}
+.btn-g:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--card-b),0 0 30px var(--glow)}
+.socials{display:flex;gap:12px}
+.ico{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:20px;text-decoration:none;
+  background:var(--card);border:1px solid var(--card-b);transition:transform .2s,box-shadow .25s,color .2s;
 }
-.social-btn span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
-.social-btn:hover{ transform:translateY(-4px) scale(1.1); }
-.instagram{ background:linear-gradient(135deg,#f09433,#dc2743,#bc1888); }
-.youtube  { background:linear-gradient(135deg,#ff0033,#ff4d4d); }
-.telegram { background:linear-gradient(135deg,#229ED9,#5cc8ff); }
+.ico:hover{transform:translateY(-3px);color:var(--accent);box-shadow:0 0 26px var(--glow)}
 
-.hero-right{ position:relative; width: 100%; display: flex; flex-direction: column; align-items: center; }
-.photo-wrap{ width:clamp(240px,30vw,420px); height:clamp(240px,30vw,420px); position:relative; }
-.photo-ring{ width:100%; height:100%; border-radius:50%; padding:6px; background:linear-gradient(135deg,var(--pink),var(--purple)); }
-.photo-inner{ width:100%; height:100%; border-radius:50%; overflow:hidden; border:7px solid var(--bg-main); }
-.photo-inner img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-.stat-card{
-  position:absolute; white-space:nowrap; background: var(--bg-surface); border:1px solid var(--border-alpha); border-radius:18px; padding:10px 14px;
-  display:flex; align-items:center; gap:10px; backdrop-filter:blur(12px); animation:floating 4s ease-in-out infinite; z-index:5;
+/* ── HOME ── */
+.hero{position:relative;overflow:hidden;min-height:92vh;min-height:92svh;display:flex;align-items:center;padding:clamp(110px,13vw,150px) 0 clamp(56px,8vw,96px)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{width:min(80vw,820px);height:min(80vw,820px);right:-12%;top:-14%;background:radial-gradient(circle,var(--blob1),transparent 65%)}
+.hero::after{width:min(60vw,560px);height:min(60vw,560px);left:-14%;bottom:-24%;background:radial-gradient(circle,var(--blob2),transparent 65%)}
+.hero .wrap{width:100%;z-index:1}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:center}
+.status{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;margin-bottom:24px;
+  background:var(--card);border:1px solid var(--card-b);font-weight:600;font-size:14px;
 }
-@keyframes floating{ 0%,100%{ transform:translateY(0); } 50% { transform:translateY(-9px); } }
-.top-card   { top:10%; left:-16%; }
-.bottom-card{ bottom:10%; right:-16%; }
+.dot{width:9px;height:9px;border-radius:50%;background:var(--yellow);box-shadow:0 0 12px 2px var(--glow-y);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(38px,11.4vw,50px);line-height:1.08;margin-bottom:22px;overflow-wrap:break-word}
+.type{min-height:3.2em;font-size:clamp(17px,1.9vw,20px);font-weight:500;color:var(--muted);margin-bottom:30px;display:flex;align-items:flex-start}
+.type span{border-right:3px solid var(--yellow);padding-right:4px;animation:caret .8s step-end infinite;color:var(--text)}
+@keyframes caret{50%{border-color:transparent}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px}
 
-.icon{ width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:17px; }
-.blue        { background:linear-gradient(135deg,#3b82f6,#06b6d4); }
-.purple-icon{ background:linear-gradient(135deg,#a855f7,#ec4899); }
-.stat-label{ font-size:11px; color: var(--text-muted); font-weight:600; }
-.stat-val  { font-size:20px; font-weight:900; color: var(--text-main); }
-
-.name-pill{
-  margin-top:24px; text-align:center; padding:16px 36px; border-radius:999px; background: var(--bg-pill);
-  border:1px solid var(--border-alpha); font-size:clamp(18px,2vw,24px); font-weight:900; letter-spacing:1px;
-  color: var(--text-main); text-shadow: 0 0 12px var(--shadow-color); box-shadow: 0 0 20px var(--shadow-color);
+.stage{display:flex;flex-direction:column;align-items:center;gap:22px}
+.halo{position:relative;width:clamp(240px,31vw,420px);aspect-ratio:1}
+.ring{
+  position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,#8B5CF6,var(--yellow),#8B5CF6 55%,var(--yellow) 80%,#8B5CF6);
+  box-shadow:0 0 90px 6px var(--glow),0 0 50px var(--glow-y);animation:spin 18s linear infinite;
 }
-
-/* ── STRUCTURE LAYOUT PANELS ── */
-section{ padding:clamp(60px,8vw,100px) 5%; width:100%; clear:both; }
-.container{ max-width:1300px; margin:auto; width:100%; }
-.sec-tag{ color:var(--pink); font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; display:block; }
-.sec-title{ font-size:clamp(30px,5vw,54px); margin-bottom:16px; font-weight:900; line-height:1.05; }
-.sec-sub{ color: var(--text-muted); line-height:1.8; max-width:700px; }
-
-.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:44px; width:100%; }
-
-.card, .service, .audience-card{
-  background: var(--bg-surface); border:1px solid var(--border-alpha); border-radius:20px; padding:26px;
-  transition: transform .35s cubic-bezier(.34,1.56,.64,1), background 0.4s, border-color 0.4s;
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo{position:absolute;inset:6px;border-radius:50%;overflow:hidden;background:#000;border:6px solid var(--bg)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.handle{
+  display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;background:var(--pill);border:1px solid var(--card-b);
+  font-weight:600;font-size:15px;text-decoration:none;box-shadow:var(--shadow)
 }
-.card:hover, .service:hover, .audience-card:hover{ transform:scale(1.04) translateY(-4px); box-shadow:0 16px 38px var(--shadow-color); border-color:rgba(255,79,216,.2); }
-.card h3, .service h3, .audience-card h3{ font-weight:800; margin-bottom:10px; }
-.card p, .service p, .audience-card p{ color: var(--text-muted); line-height:1.8; }
+.handle i{color:var(--accent)}
 
-.big{ font-size:clamp(36px,5vw,50px); font-weight:900; margin-top:10px; }
-.review{ color:#ffc83d; margin-bottom:14px; }
-.handle{ margin-top:16px; color:var(--pink); font-weight:700; }
+/* background clipart (tech doodles, same set as the profile photo) */
+.doodles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.doodles svg{aspect-ratio:1;height:auto;position:absolute;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:var(--doodle-o)}
+.d-y{stroke:var(--doodle-a);filter:drop-shadow(0 0 8px var(--glow-y))}
+.d-p{stroke:var(--doodle-b);filter:drop-shadow(0 0 8px var(--glow))}
+.dd1{width:clamp(70px,9vw,130px);left:3%;top:20%;transform:rotate(-10deg)}
+.dd2{width:clamp(56px,7vw,100px);left:44%;top:12%;transform:rotate(8deg)}
+.dd3{width:clamp(60px,6vw,96px);left:51%;bottom:7%;transform:rotate(14deg)}
+.dd4{width:clamp(70px,8vw,120px);right:4%;top:18%;transform:rotate(12deg)}
+.dd5{width:clamp(64px,7vw,100px);right:6%;bottom:9%;transform:rotate(-12deg)}
+.dd6{aspect-ratio:220/64;width:clamp(110px,14vw,210px);left:30%;bottom:2%;transform:rotate(-4deg)}
+.dd7{width:clamp(40px,4vw,60px);left:38%;top:62%}
 
-/* ── AFFILIATE STORE MODAL LAYOUT ── */
-#store{ background: var(--bg-store); }
-.store-tag{
-  display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px;
-  background:rgba(255,200,61,.08); border:1px solid rgba(255,200,61,.2); color:#ffc83d; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px;
+/* home sections */
+.home-sec{padding:clamp(48px,7vw,92px) 0;position:relative}
+.sec-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:clamp(24px,4vw,40px)}
+.sec-top .lead{margin-top:10px}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,56px)}
+.pillar{border-top:2px solid var(--text);padding-top:24px}
+.pillar svg{width:68px;height:68px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 10px var(--glow-y));margin-bottom:18px}
+.pillar h3{margin-bottom:8px}
+.pillar p{color:var(--muted)}
+
+/* ── INNER PAGES ── */
+.page{padding:clamp(120px,14vw,160px) 0 clamp(64px,9vw,110px);position:relative;overflow:hidden}
+.page::before{content:"";position:absolute;width:min(70vw,720px);height:min(70vw,720px);right:-16%;top:-22%;border-radius:50%;
+  background:radial-gradient(circle,var(--blob1),transparent 65%);pointer-events:none}
+.page .wrap{z-index:1}
+.page-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(30px,5vw,52px)}
+.sub{font-size:clamp(21px,2.2vw,26px);letter-spacing:-.015em;font-weight:700;margin:clamp(48px,7vw,80px) 0 22px}
+
+/* insights */
+.panel{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-radius:28px;overflow:hidden;
+  background:linear-gradient(160deg,var(--card),transparent);border:1px solid var(--card-b);box-shadow:var(--shadow),0 0 80px -30px var(--glow);
 }
-.store-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:24px; margin-top:32px; width:100%; }
-.product-card{
-  background: var(--bg-surface); border:1px solid var(--border-alpha); border-radius:22px; overflow:hidden;
-  transition: transform .38s cubic-bezier(.34,1.56,.64,1), border-color 0.4s; display:flex; flex-direction:column; position:relative; width:100%;
+.panel div{padding:clamp(24px,3vw,38px) clamp(18px,2.4vw,30px);border-left:1px solid var(--card-b);min-width:0}
+.panel div:first-child{border-left:0}
+.panel strong{display:block;font-weight:800;font-size:clamp(30px,3.8vw,48px);line-height:1.1;letter-spacing:-.025em;font-variant-numeric:tabular-nums;
+  color:var(--text);text-shadow:0 0 34px var(--glow)}
+.panel span{display:block;color:var(--muted);font-size:15px;font-weight:500;margin-top:6px}
+.updated{color:var(--muted);font-size:14px;margin-top:16px;font-weight:500}
+.rows{border-top:1px solid var(--card-b)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(8px,4vw,56px);padding:clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--card-b);align-items:baseline}
+.row h3{font-size:clamp(20px,2.4vw,26px)}
+.row p{color:var(--muted)}
+.comments{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.comment{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:24px;background:var(--card);border:1px solid var(--card-b)}
+.av{flex:0 0 44px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;
+  color:var(--on-yellow);background:linear-gradient(135deg,var(--yellow),#FFF1A8);box-shadow:0 0 22px var(--glow-y)}
+.comment b{display:block;font-size:15px}
+.comment p{font-size:16px;line-height:1.55}
+
+/* services */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.tile{
+  position:relative;overflow:hidden;border-radius:28px;padding:clamp(24px,3vw,34px);min-height:220px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:26px;
+  background:var(--card);border:1px solid var(--card-b);transition:transform .3s,box-shadow .3s;
 }
-.product-card:hover{ transform:translateY(-7px) scale(1.02); box-shadow:0 20px 48px var(--shadow-color); border-color:rgba(255,79,216,.25); }
-.product-badge{ position:absolute; top:12px; left:12px; padding:4px 12px; border-radius:999px; font-size:10px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; z-index:2; }
-.badge-pick{ background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; }
+.tile:hover{transform:translateY(-4px);box-shadow:0 0 60px -10px var(--glow)}
+.tile i{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:20px;background:var(--bg2);border:1px solid var(--card-b)}
+.tile h3{margin-bottom:6px}
+.tile p{color:var(--muted);font-size:16px}
+.t-a{grid-column:span 4;background:linear-gradient(135deg,#5B21B6 0%,#8B5CF6 55%,#A78BFA 100%);border-color:transparent;color:#fff}
+.t-a p{color:rgba(255,255,255,.85)}
+.t-a i{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.25)}
+.t-b,.t-c{grid-column:span 2}
+.t-d{grid-column:span 4;background:var(--yellow);border-color:transparent;color:var(--on-yellow);box-shadow:0 0 70px -20px var(--glow-y)}
+.t-d p{color:rgba(20,16,10,.75)}
+.t-d i{background:rgba(20,16,10,.1);border-color:rgba(20,16,10,.18)}
+.after{margin-top:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 
-.product-thumb{ width:100%; height:280px; display:flex; align-items:center; justify-content:center; background: var(--bg-pill); overflow:hidden; position:relative; padding: 20px; }
-.product-thumb img{ width:100%; height:100%; object-fit:contain; display:block; max-width:100%; max-height:100%; transition: transform 0.3s ease; }
-.product-card:hover .product-thumb img { transform: scale(1.03); }
-
-.product-body{ padding:22px; flex:1; display:flex; flex-direction:column; }
-.product-category{ font-size:10px; font-weight:700; color:var(--pink); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
-.product-name{ font-size:16px; font-weight:800; margin-bottom:8px; line-height:1.4; }
-.product-desc{ font-size:13px; color: var(--text-muted); line-height:1.7; flex:1; margin-bottom:16px; }
-.product-footer{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto; width: 100%; }
-.product-price{ font-size:20px; font-weight:900; background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.product-price small{ font-size:11px; font-weight:500; color:#6b7280; -webkit-text-fill-color:#6b7280; text-decoration:line-through; margin-left:4px; }
-.buy-btn{ display:inline-flex; align-items:center; gap:7px; padding:11px 20px; border-radius:12px; background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; font-weight:700; font-size:13px; text-decoration:none; transition:.28s; white-space:nowrap; }
-.buy-btn:hover{ transform:scale(1.05); box-shadow:0 8px 22px rgba(255,79,216,.35); }
-
-.store-note{ margin-top:32px; padding:16px 22px; border-radius:14px; background:rgba(255,200,61,.05); border:1px solid rgba(255,200,61,.12); display:flex; align-items:flex-start; gap:12px; color: var(--text-main); font-size:13.5px; line-height:1.65; }
-.store-note i{ color:#ffc83d; font-size:18px; flex-shrink:0; margin-top:2px; }
-
-.contact-wrapper{ display:flex; justify-content:center; margin-top:38px; width: 100%; }
-.email-btn{ display:inline-flex; align-items:center; justify-content:center; padding:18px 36px; border-radius:16px; background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; text-decoration:none; font-weight:700; font-size:clamp(13px,1.3vw,16px); text-align:center; max-width: 100%; }
-.email-btn:hover{ transform:scale(1.06) translateY(-3px); box-shadow:0 16px 38px rgba(255,79,216,.28); }
-
-footer{ padding:44px 20px; text-align:center; border-top:1px solid var(--border-light); color: var(--text-muted); font-size:13px; width:100%; }
-
-/* ── SYSTEM RESPONSIVE BREAKER ENGINE ── */
-@media(max-width:1140px){ .top-card { left:-10%; } .bottom-card{ right:-10%; } }
-@media(max-width:1024px){ .top-card { left:-6%; } .bottom-card{ right:-6%; } }
-@media(max-width:820px){
-  .nav-links{ display:none; } .hamburger{ display:flex; }
-  .hero-inner{ grid-template-columns:minmax(0,1fr); text-align:center; }
-  .eyebrow{ font-size:12px; padding:8px 14px; }
-  .hero h1{ font-size:clamp(36px,11vw,64px); }
-  .sec-sub, .card p{ overflow-wrap:anywhere; }
-  .hero-right{ display:flex; flex-direction:column; align-items:center; margin-top: 40px; width:100%; }
-  .hero-btns, .socials{ justify-content:center; }
-  .photo-wrap{ width:clamp(220px,55vw,340px); height:clamp(220px,55vw,340px); }
-  .top-card { top:8%; left:-12%; } .bottom-card{ bottom:8%; right:-12%; }
+/* store */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.product{display:flex;flex-direction:column;border-radius:28px;overflow:hidden;background:var(--card);border:1px solid var(--card-b);transition:transform .3s,box-shadow .3s}
+.product:hover{transform:translateY(-6px);box-shadow:0 0 70px -12px var(--glow)}
+.thumb{height:290px;padding:22px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#FFFFFF 0%,#E9E1FF 100%)}
+.thumb img{max-height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 16px 24px rgba(40,10,90,.28))}
+.p-body{padding:24px;display:flex;flex-direction:column;flex:1;gap:8px}
+.p-tag{font-size:14px;font-weight:700;color:var(--accent)}
+.p-name{font-weight:700;font-size:19px;line-height:1.35;letter-spacing:-.01em}
+.p-desc{color:var(--muted);font-size:15px;flex:1}
+.p-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;flex-wrap:wrap}
+.price{font-weight:800;font-size:28px;line-height:1;letter-spacing:-.02em}
+.price s{font-weight:500;font-size:15px;color:var(--muted);margin-left:8px;letter-spacing:0}
+.buy{
+  display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;background:var(--yellow);color:var(--on-yellow);
+  font-weight:700;text-decoration:none;box-shadow:0 8px 30px -8px var(--glow-y);transition:transform .2s,box-shadow .25s;
 }
-@media(max-width:520px) {
-  .hero-inner{ gap:24px; }
-  .photo-wrap{ width:240px; height:240px; margin-bottom: 20px; }
-  .top-card { top: 4%; left: -8%; } 
-  
-  .bottom-card{ bottom: 4%; right: -8%; animation: floating 4s ease-in-out infinite; }
-  
-  .icon{ width:32px; height:32px; font-size:14px; border-radius: 9px; }
-  .stat-label{ font-size:9px; } .stat-val{ font-size:15px; }
-  .store-grid, .grid{ grid-template-columns:minmax(0,1fr); gap: 20px; }
-  .product-thumb{ height: 220px; padding:14px; }
-  .email-btn{ padding:16px 18px; font-size:13px; word-break:break-all; width:100%; }
-  .hero-btns{ flex-direction:column; align-items:stretch; }
-  .hero-btns .btn{ text-align:center; }
-  .name-pill{ padding:12px 26px; margin-top:20px; }
-  .product-footer{ flex-wrap:wrap; }
-  .buy-btn{ flex:1; justify-content:center; }
-  .card:hover, .service:hover, .audience-card:hover, .product-card:hover{ transform:none; }
-  .typewriter-box{ min-height:80px; }
-  .hero-sub{ font-size:16px; }
+.buy:hover{transform:translateY(-2px);box-shadow:0 12px 40px -6px var(--glow-y)}
+.note{margin-top:28px;color:var(--muted);font-size:15px;display:flex;gap:10px;align-items:flex-start}
+.note i{margin-top:5px;color:var(--accent)}
+
+/* contact */
+.cta{
+  position:relative;overflow:hidden;text-align:center;border-radius:36px;padding:clamp(44px,7vw,90px) clamp(20px,5vw,60px);
+  background:radial-gradient(circle at 50% 0%,rgba(139,92,246,.5),transparent 62%),linear-gradient(180deg,var(--card),transparent);
+  border:1px solid var(--card-b);box-shadow:0 0 100px -30px var(--glow);
 }
-@media(max-width:360px){
-  .top-card, .bottom-card{ padding:8px 10px; gap:8px; }
-  .logo{ font-size:19px; }
+:root[data-theme="light"] .cta{background:radial-gradient(circle at 50% 0%,rgba(139,92,246,.26),transparent 62%),var(--bg2)}
+.cta h2{max-width:16ch;margin:0 auto 16px}
+.cta p{color:var(--muted);max-width:44ch;margin:0 auto 30px}
+.mail{
+  display:inline-flex;align-items:center;gap:12px;max-width:100%;padding:18px 30px;border-radius:999px;background:var(--yellow);color:var(--on-yellow);
+  font-weight:700;font-size:clamp(15px,3.8vw,19px);text-decoration:none;overflow-wrap:anywhere;
+  box-shadow:0 0 0 1px rgba(255,210,31,.6),0 14px 60px -8px var(--glow-y);transition:transform .2s;
+}
+.mail:hover{transform:translateY(-3px)}
+.cta .socials{justify-content:center;margin-top:30px}
+
+footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
+.foot{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;color:var(--muted);font-size:15px}
+.foot a.mailto{color:var(--text);font-weight:600;text-decoration:none}
+.foot a.mailto:hover{color:var(--accent)}
+.foot .socials{gap:10px}
+.foot .ico{width:42px;height:42px;font-size:17px}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--yellow);color:var(--on-yellow);padding:10px 16px;border-radius:10px;font-weight:700}
+.skip:focus{left:12px}
+.brief{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:clamp(28px,4vw,44px)}
+.brief div{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--card-b)}
+.brief i{color:var(--accent);margin-bottom:12px;font-size:18px}
+.brief h3{font-size:17px;margin-bottom:4px}
+.brief p{color:var(--muted);font-size:15px}
+
+/* ── RESPONSIVE ── */
+@media(min-width:900px){
+  .hero h1{font-size:clamp(52px,5.8vw,76px)}
+}
+@media(max-width:899px){
+  .links{display:none}
+  .burger{display:grid}
+  .hero{min-height:0}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .stage{order:-1}
+  .halo{width:clamp(200px,56vw,280px)}
+  .panel{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .panel div:nth-child(odd){border-left:0}
+  .panel div:nth-child(n+3){border-top:1px solid var(--card-b)}
+  .panel strong{font-size:clamp(28px,8vw,42px)}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .pillars{grid-template-columns:minmax(0,1fr)}
+  .comments{grid-template-columns:minmax(0,1fr)}
+  .brief{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dd2,.dd6,.dd7{display:none}
+}
+@media(max-width:640px){
+  body{font-size:16px}
+  .bento{grid-template-columns:minmax(0,1fr)}
+  .t-a,.t-b,.t-c,.t-d{grid-column:auto}
+  .tile{min-height:0}
+  .hero-actions .btn{flex:1 1 100%}
+  .thumb{height:240px}
+  .dd1{left:-4%;top:14%}.dd3{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 
 <body>
 
-<div id="cursor-dot"></div>
-<div id="cursor-cross"></div>
+<!-- tech clipart used as background art -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-laptop" viewBox="0 0 64 64"><rect x="10" y="14" width="44" height="30" rx="3"/><path d="M4 50h56l-4 6H8z"/><path d="M27 24l-6 6 6 6M37 24l6 6-6 6"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 64 64"><path d="M32 8a16 16 0 0 0-8 29.8V44h16v-6.2A16 16 0 0 0 32 8z"/><path d="M26 50h12M28 56h8M32 1v3M10 12l2 2M54 12l-2 2M3 30h3M58 30h3"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 64 64"><circle cx="32" cy="32" r="9"/><circle cx="32" cy="32" r="17"/><path d="M32 8v7M32 49v7M8 32h7M49 32h7M15 15l5 5M44 44l5 5M49 15l-5 5M20 44l-5 5"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 64 64"><path d="M32 6c8 6 12 16 10 28H22C20 22 24 12 32 6z"/><circle cx="32" cy="24" r="4"/><path d="M22 34l-8 10 10-2M42 34l8 10-10-2M28 44l4 12 4-12"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 64 64"><rect x="18" y="18" width="28" height="28" rx="3"/><rect x="26" y="26" width="12" height="12"/><path d="M24 10v8M32 10v8M40 10v8M24 46v8M32 46v8M40 46v8M10 24h8M10 32h8M10 40h8M46 24h8M46 32h8M46 40h8"/></symbol>
+    <symbol id="i-circuit" viewBox="0 0 220 64"><path d="M2 32h50l12-18h40l12 18h40l12 18h50"/><circle cx="52" cy="32" r="3"/><circle cx="104" cy="14" r="3"/><circle cx="156" cy="32" r="3"/><circle cx="206" cy="50" r="3"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 64 64"><path d="M32 6l5 21 21 5-21 5-5 21-5-21-21-5 21-5z"/></symbol>
+  </defs>
+</svg>
 
+<a class="skip" href="#main">Skip to content</a>
 <nav>
-  <div class="logo">TECHIE <span>SHIV</span></div>
-  <div class="nav-right-wrapper">
-    <div class="nav-links">
-      <a href="#stats">Stats</a>
-      <a href="#audience">Audience</a>
-      <a href="#services">Services</a>
-      <a href="#store">Store</a>
-      <a href="#testimonials">Love</a>
-      <a href="#contact">Contact</a>
+  <div class="pill">
+    <a class="logo" href="#/home" aria-label="Techie Shiv, home">TECHIE <b>SHIV</b></a>
+    <div class="nav-r">
+      <div class="links" id="links">
+        <a href="#/home" data-route="home">Home</a>
+        <a href="#/services" data-route="services">Services</a>
+        <a href="#/insights" data-route="insights">Insights</a>
+        <a href="#/store" data-route="store">Store</a>
+        <a href="#/contact" data-route="contact">Contact</a>
+      </div>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch light and dark theme"><i class="fas fa-circle-half-stroke"></i></button>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
     </div>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle Theme">
-      <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
-    </button>
-    <button class="hamburger" id="hamburger" type="button" aria-label="Toggle Menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#stats" onclick="closeMenu()">Stats</a>
-  <a href="#audience" onclick="closeMenu()">Audience</a>
-  <a href="#services" onclick="closeMenu()">Services</a>
-  <a href="#store" onclick="closeMenu()">Store</a>
-  <a href="#testimonials" onclick="closeMenu()">Love</a>
-  <a href="#contact" onclick="closeMenu()">Contact</a>
+<div class="menu" id="menu">
+  <a href="#/home" data-route="home">Home</a>
+  <a href="#/services" data-route="services">Services</a>
+  <a href="#/insights" data-route="insights">Insights</a>
+  <a href="#/store" data-route="store">Store</a>
+  <a href="#/contact" data-route="contact">Contact</a>
 </div>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="eyebrow"><div class="live-dot"></div>Open to Brand Collaborations</div>
-      <h1>I Build Content<br>That Gets<br><span class="gradient">Attention.</span></h1>
-       
-      <div class="typewriter-box">
-        <p class="hero-sub" id="typewriter-text"></p>
-      </div>
+<main id="main" tabindex="-1">
 
-      <div class="hero-btns">
-        <a href="#services" class="btn primary">Work With Me</a>
-        <a href="https://www.instagram.com/techie.shiv/" target="_blank" class="btn secondary">View Profile</a>
-      </div>
+<!-- ═════════ HOME ═════════ -->
+<div class="view" id="view-home" data-desc="Techie Shiv (Shiv Rajpoot) is a tech and AI content creator. Short-form tips, AI tools and productivity for learners, students and creators." data-title="Techie Shiv">
+  <header class="hero">
+    <div class="doodles" aria-hidden="true">
+      <svg class="d-y dd1"><use href="#i-laptop"/></svg>
+      <svg class="d-p dd2"><use href="#i-bulb"/></svg>
+      <svg class="d-p dd3"><use href="#i-gear"/></svg>
+      <svg class="d-y dd4"><use href="#i-rocket"/></svg>
+      <svg class="d-p dd5"><use href="#i-chip"/></svg>
+      <svg class="d-y dd6" viewBox="0 0 220 64"><use href="#i-circuit"/></svg>
+      <svg class="d-y dd7"><use href="#i-spark"/></svg>
     </div>
-
-    <div class="hero-right">
-      <div class="photo-wrap">
-        <div class="stat-card top-card">
-          <div class="icon blue">👥</div>
-          <div><div class="stat-label">Followers</div><div class="stat-val" data-stat="followers" data-format="compact">3.9K</div></div>
-        </div>
-        <div class="photo-ring">
-          <div class="photo-inner"><img src="profile.png" alt="Shiv Rajpoot"></div>
-        </div>
-        <div class="stat-card bottom-card">
-          <div class="icon purple-icon">📈</div>
-          <div><div class="stat-label">Reach · 30d</div><div class="stat-val" data-stat="reach" data-format="compact">355.8K</div></div>
-        </div>
-      </div>
-      <div class="name-pill">Shiv Rajpoot</div>
-      <div class="socials">
-        <a href="https://www.instagram.com/techie.shiv/" target="_blank" class="social-btn instagram" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-        <a href="https://www.youtube.com/@techie.shiv." target="_blank" class="social-btn youtube" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i><span>YouTube</span></a>
-        <a href="https://t.me/techie_shiv" target="_blank" class="social-btn telegram" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i><span>Telegram</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="stats">
-  <div class="container">
-    <span class="sec-tag">By The Numbers</span>
-    <h2 class="sec-title">Performance &amp; Growth</h2>
-    <p class="sec-sub">Instagram analytics · last 30 days · <span id="stats-updated">updated regularly</span></p>
-    <div class="grid">
-      <div class="card"><h3>Followers</h3><div class="big" data-stat="followers" data-format="full">3,875</div><p>Creator community on Instagram.</p></div>
-      <div class="card"><h3>Reach</h3><div class="big" data-stat="reach" data-format="compact">355.8K</div><p>Unique accounts reached in the last 30 days.</p></div>
-      <div class="card"><h3>Views</h3><div class="big" data-stat="views" data-format="compact">423.3K</div><p>Total content views in the last 30 days.</p></div>
-      <div class="card"><h3>Engagement Rate</h3><div class="big" data-stat="engagement" data-format="percent">10.7%</div><p>Strong audience interaction.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="audience">
-  <div class="container">
-    <span class="sec-tag">Audience</span>
-    <h2 class="sec-title">Who Watches My Content</h2>
-    <div class="grid">
-      <div class="audience-card"><h3>Tech Learners</h3><p>People learning AI tools and productivity.</p></div>
-      <div class="audience-card"><h3>Students</h3><p>Students looking for career and skill growth.</p></div>
-      <div class="audience-card"><h3>Creators</h3><p>Content creators improving reach and editing.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="services">
-  <div class="container">
-    <span class="sec-tag">Services</span>
-    <h2 class="sec-title">What I Can Help With</h2>
-    <div class="grid">
-      <div class="service"><h3>Brand Promotions</h3><p>Promote products through engaging creator content.</p></div>
-      <div class="service"><h3>UGC Content</h3><p>Short-form modern user-generated content.</p></div>
-      <div class="service"><h3>Tech Content</h3><p>Educational tech &amp; AI focused content strategy.</p></div>
-      <div class="service"><h3>Creator Branding</h3><p>Build a strong online presence with premium identity.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="store">
-  <div class="container">
-    <div class="store-tag"><i class="fas fa-store"></i> Affiliate Store</div>
-    <h2 class="sec-title">My Favourite Picks 🛍️</h2>
-    <div class="store-grid">
-       
-      <div class="product-card">
-        <span class="product-badge badge-pick">Must Read</span>
-        <div class="product-thumb">
-          <img src="Zero to One.png" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/Zero%20to%20One.png';" alt="Zero to One Book">
-        </div>
-        <div class="product-body">
-          <div class="product-category">Books</div>
-          <div class="product-name">Zero to One: Notes on Start Ups, or How to Build the Future</div>
-          <div class="product-desc">Legendary startup blueprint by Peter Thiel. Essential reading for every modern creator and digital entrepreneur.</div>
-          <div class="product-footer">
-            <div class="product-price">₹283 <small>₹499</small></div>
-            <a href="https://bitli.in/JTDobJx" target="_blank" class="buy-btn">Buy Now <i class="fas fa-arrow-right"></i></a>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="status"><span class="dot"></span>Open to brand collaborations</div>
+          <h1>I build content that gets attention.</h1>
+          <div class="type" aria-live="off"><span id="typewriter"></span></div>
+          <div class="hero-actions">
+            <a class="btn btn-y" href="#/services">Work with me <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="socials">
+            <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
           </div>
         </div>
-      </div>
-
-      <div class="product-card">
-        <span class="product-badge badge-pick">Must Read</span>
-        <div class="product-thumb">
-          <img src="The Hard Thing about Hard Thing.png" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/The%20Hard%20Thing%20about%20Hard%20Thing.png';" alt="The Hard Thing About Hard Things">
-        </div>
-        <div class="product-body">
-          <div class="product-category">Books</div>
-          <div class="product-name">The Hard Thing About Hard Things by Ben Horowitz</div>
-          <div class="product-desc">Brutally honest management insights and tactical startup leadership execution guidelines straight from Silicon Valley war stories.</div>
-          <div class="product-footer">
-            <div class="product-price">₹275 <small>₹599</small></div>
-            <a href="https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/" target="_blank" class="buy-btn">Buy Now <i class="fas fa-arrow-right"></i></a>
+        <div class="stage">
+          <div class="halo">
+            <div class="ring"></div>
+            <div class="photo"><img src="profile.png" width="420" height="420" decoding="async" fetchpriority="high" alt="Shiv Rajpoot, Techie Shiv"></div>
           </div>
+          <a class="handle" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener"><i class="fas fa-circle-check"></i>@techie.shiv</a>
         </div>
       </div>
-
     </div>
-    <div class="store-note"><i class="fas fa-info-circle"></i><span>These are affiliate links — I earn a commission at no extra cost to you! 🙏</span></div>
-  </div>
-</section>
+  </header>
 
-<section id="testimonials">
-  <div class="container">
-    <span class="sec-tag">Community Love</span>
-    <h2 class="sec-title">What People Say</h2>
-    <div class="grid">
-      <div class="card"><div class="review">★★★★★</div><p>"Smart and easy to understand reels."</p><div class="handle">@techmodee</div></div>
-      <div class="card"><div class="review">★★★★★</div><p>"Useful things for creators. Keep going 🔥"</p><div class="handle">@ankit_ankk</div></div>
-      <div class="card"><div class="review">★★★★★</div><p>"Your explanation level is completely clean and incredible. Loved it!"</p><div class="handle">@iam_shubham</div></div>
-      <div class="card"><div class="review">★★★★★</div><p>"Highly qualitative content blueprint. Pure value additions."</p><div class="handle">@growth_matrix</div></div>
+  <section class="home-sec" id="home-stats">
+    <div class="wrap">
+      <div class="sec-top">
+        <div>
+          <h2>Last 30 days</h2>
+          <p class="lead">Live Instagram numbers for @techie.shiv.</p>
+        </div>
+        <p class="updated" style="margin:0">Updated <span class="stats-updated">regularly</span></p>
+      </div>
+      <div class="panel">
+        <div><strong data-stat="followers" data-format="full">3,875</strong><span>Followers</span></div>
+        <div><strong data-stat="reach" data-format="compact">355.8K</strong><span>Accounts reached</span></div>
+        <div><strong data-stat="views" data-format="compact">423.3K</strong><span>Views</span></div>
+        <div><strong data-stat="engagement" data-format="percent">10.7%</strong><span>Engagement rate</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-sec">
+    <div class="wrap">
+      <div class="sec-top">
+        <div>
+          <h2>What I make</h2>
+          <p class="lead">Short-form tech and AI content for learners, students and creators.</p>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-bulb"/></svg><h3>Tech tips</h3><p>Simple tricks and tools that make everyday tech easier.</p></div>
+        <div class="pillar"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-chip"/></svg><h3>AI tools</h3><p>Hands-on looks at the AI tools worth your time.</p></div>
+        <div class="pillar"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-rocket"/></svg><h3>Productivity</h3><p>Things I wish I knew earlier, to learn faster and do more.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-sec">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Planning a campaign?</h2>
+        <p>Tell me about your brand and what you want to launch.</p>
+        <a class="mail" href="mailto:contact.shivrajpoot@gmail.com?subject=Brand%20collaboration%20enquiry"><i class="fas fa-envelope"></i>contact.shivrajpoot@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════ SERVICES ═════════ -->
+<div class="view" id="view-services" data-desc="Brand promotions, UGC, tech content and creator branding by Techie Shiv." data-title="Services" hidden>
+  <section class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <h2>What I can do for your brand</h2>
+        <p class="lead">Short-form content made for tech and AI audiences.</p>
+      </div>
+      <div class="bento">
+        <div class="tile t-a"><i class="fas fa-bullhorn"></i><div><h3>Brand promotions</h3><p>Promote products through engaging creator content.</p></div></div>
+        <div class="tile t-b"><i class="fas fa-video"></i><div><h3>UGC content</h3><p>Short-form, modern user-generated content.</p></div></div>
+        <div class="tile t-c"><i class="fas fa-microchip"></i><div><h3>Tech content</h3><p>Educational tech and AI content strategy.</p></div></div>
+        <div class="tile t-d"><i class="fas fa-gem"></i><div><h3>Creator branding</h3><p>Build a strong online presence with a premium identity.</p></div></div>
+      </div>
+      <div class="after">
+        <a class="btn btn-y" href="#/contact">Start a project <i class="fas fa-arrow-right"></i></a>
+        <a class="btn btn-g" href="#/insights">See my numbers</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════ INSIGHTS ═════════ -->
+<div class="view" id="view-insights" data-desc="Live Instagram analytics for @techie.shiv: followers, reach, views and engagement over the last 30 days." data-title="Insights" hidden>
+  <section class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <h2>Insights, last 30 days</h2>
+        <p class="lead">Live Instagram numbers for @techie.shiv.</p>
+      </div>
+      <div class="panel">
+        <div><strong data-stat="followers" data-format="full">3,875</strong><span>Followers</span></div>
+        <div><strong data-stat="reach" data-format="compact">355.8K</strong><span>Accounts reached</span></div>
+        <div><strong data-stat="views" data-format="compact">423.3K</strong><span>Views</span></div>
+        <div><strong data-stat="engagement" data-format="percent">10.7%</strong><span>Engagement rate</span></div>
+      </div>
+      <p class="updated">Updated <span class="stats-updated">regularly</span>.</p>
+
+      <h3 class="sub">Who watches</h3>
+      <div class="rows">
+        <div class="row"><h3>Tech learners</h3><p>People learning AI tools and productivity.</p></div>
+        <div class="row"><h3>Students</h3><p>Students looking for career and skill growth.</p></div>
+        <div class="row"><h3>Creators</h3><p>Content creators improving reach and editing.</p></div>
+      </div>
+
+      <h3 class="sub">From the comments</h3>
+      <div class="comments">
+        <div class="comment"><div class="av" aria-hidden="true">T</div><div><b>techmodee</b><p>Smart and easy to understand reels.</p></div></div>
+        <div class="comment"><div class="av" aria-hidden="true">A</div><div><b>ankit_ankk</b><p>Useful things for creators. Keep going 🔥</p></div></div>
+        <div class="comment"><div class="av" aria-hidden="true">I</div><div><b>iam_shubham</b><p>Your explanation level is completely clean and incredible. Loved it!</p></div></div>
+        <div class="comment"><div class="av" aria-hidden="true">G</div><div><b>growth_matrix</b><p>Highly qualitative content blueprint. Pure value additions.</p></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════ STORE ═════════ -->
+<div class="view" id="view-store" data-desc="Books recommended by Techie Shiv. Affiliate links." data-title="Store" hidden>
+  <section class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <h2>Store</h2>
+        <p class="lead">Books I recommend. Tap Buy now to open the seller's page.</p>
+      </div>
+      <h3 class="sub" style="margin-top:0">Books</h3>
+      <div class="products">
+
+        <article class="product">
+          <div class="thumb">
+            <img src="Zero to One.png" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/Zero%20to%20One.png';" alt="Zero to One book cover">
+          </div>
+          <div class="p-body">
+            <div class="p-tag">Book</div>
+            <div class="p-name">Zero to One: Notes on Start Ups, or How to Build the Future</div>
+            <p class="p-desc">Peter Thiel's startup blueprint. Essential reading for modern creators and digital entrepreneurs.</p>
+            <div class="p-foot">
+              <div class="price">₹283<s>₹499</s></div>
+              <a class="buy" href="https://bitli.in/JTDobJx" target="_blank" rel="noopener sponsored">Buy now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="thumb">
+            <img src="The Hard Thing about Hard Thing.png" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/The%20Hard%20Thing%20about%20Hard%20Thing.png';" alt="The Hard Thing About Hard Things book cover">
+          </div>
+          <div class="p-body">
+            <div class="p-tag">Book</div>
+            <div class="p-name">The Hard Thing About Hard Things by Ben Horowitz</div>
+            <p class="p-desc">Honest management lessons and startup leadership stories from Silicon Valley.</p>
+            <div class="p-foot">
+              <div class="price">₹275<s>₹599</s></div>
+              <a class="buy" href="https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/" target="_blank" rel="noopener sponsored">Buy now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <p class="note"><i class="fas fa-circle-info"></i><span>These are affiliate links. I earn a commission at no extra cost to you.</span></p>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════ CONTACT ═════════ -->
+<div class="view" id="view-contact" data-desc="Work with Techie Shiv. Brand deals, UGC and tech campaigns." data-title="Contact" hidden>
+  <section class="page">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Let's make something people watch</h2>
+        <p>Brand deals, UGC or a tech campaign. Send the details and I'll reply.</p>
+        <a class="mail" href="mailto:contact.shivrajpoot@gmail.com?subject=Brand%20collaboration%20enquiry"><i class="fas fa-envelope"></i>contact.shivrajpoot@gmail.com</a>
+        <div class="socials">
+          <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+      </div>
+      <div class="brief">
+        <div><i class="fas fa-tag"></i><h3>Brand and product</h3><p>Who you are and what you want to promote.</p></div>
+        <div><i class="fas fa-film"></i><h3>Content you need</h3><p>Reels, stories, UGC or a tech explainer.</p></div>
+        <div><i class="fas fa-calendar-days"></i><h3>Timeline</h3><p>Launch date and posting window.</p></div>
+        <div><i class="fas fa-indian-rupee-sign"></i><h3>Budget</h3><p>A range helps me reply with a clear plan.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Shiv Rajpoot. Think Tech. Think Shiv.</span>
+    <a class="mailto" href="mailto:contact.shivrajpoot@gmail.com">contact.shivrajpoot@gmail.com</a>
+    <div class="socials">
+      <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
     </div>
   </div>
-</section>
-
-<section id="contact">
-  <div class="container">
-    <span class="sec-tag">Let's Work Together</span>
-    <h2 class="sec-title">Ready To Build Something Amazing?</h2>
-    <div class="contact-wrapper">
-      <a href="mailto:contact.shivrajpoot@gmail.com" class="email-btn">contact.shivrajpoot@gmail.com</a>
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 Shiv Rajpoot — Think Tech. Think Shiv.</footer>
+</footer>
 
 <script>
-/* ── THEME MANAGER ── */
-const themeToggle = document.getElementById('themeToggle');
-const rootElement = document.documentElement;
-const savedTheme = localStorage.getItem('theme') || 'dark';
-rootElement.setAttribute('data-theme', savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const activeTheme = rootElement.getAttribute('data-theme');
-  const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
-  rootElement.setAttribute('data-theme', targetTheme);
-  localStorage.setItem('theme', targetTheme);
-});
-
-/* ── MOBILE MENU SYSTEM ── */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-if(hamburger && mobileMenu) {
-  hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('open'); });
-  document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) mobileMenu.classList.remove('open'); });
-}
-function closeMenu(){ if(mobileMenu) mobileMenu.classList.remove('open'); }
-
-/* ── MOUSE CURSOR DRIVERS ── */
-const dot = document.getElementById('cursor-dot');
-const cross = document.getElementById('cursor-cross');
-if(window.matchMedia('(pointer:fine)').matches && dot && cross){
-  dot.style.display = cross.style.display = 'block';
-  let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx+'px'; dot.style.top = my+'px';
-    const t = document.createElement('div'); t.className = 'trail'; t.style.cssText = `left:${mx}px;top:${my}px`;
-    document.body.appendChild(t); setTimeout(() => t.remove(), 500);
+/* ── THEME ── */
+(function(){
+  var root=document.documentElement, saved=null;
+  try{ saved=localStorage.getItem('theme'); }catch(e){}
+  if(saved==='light'||saved==='dark') root.setAttribute('data-theme',saved);
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem('theme',next); }catch(e){}
   });
-  (function loop(){ cx += (mx-cx)*0.14; cy += (my-cy)*0.14; cross.style.left = cx+'px'; cross.style.top = cy+'px'; requestAnimationFrame(loop); })();
-}
+})();
 
-/* ── TYPEWRITER ENGINE ── */
-const phrases = [
-  "Less scrolling. More learning ⚡",
-  "Tech, AI & things worth knowing 💡",
-  "Sharing things I wish I knew earlier 💯"
-];
-let currentPhraseIndex = 0;
-let currentCharIndex = 0;
-let isDeleting = false;
-let typewriterTextTarget;
-
-function executeTypewriterLoop() {
-  if (!typewriterTextTarget) return;
-  const currentFullText = phrases[currentPhraseIndex];
-  
-  if (isDeleting) {
-    typewriterTextTarget.textContent = currentFullText.substring(0, currentCharIndex - 1);
-    currentCharIndex--;
-  } else {
-    typewriterTextTarget.textContent = currentFullText.substring(0, currentCharIndex + 1);
-    currentCharIndex++;
+/* ── PAGES: clicking a link switches the page directly (works even where URL hashes are blocked) ── */
+(function(){
+  var names=['home','services','insights','store','contact'];
+  var menu=document.getElementById('menu'), burger=document.getElementById('burger');
+  function setMenu(open){
+    menu.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.firstElementChild.className=open?'fas fa-xmark':'fas fa-bars';
   }
-
-  let executionSpeed = isDeleting ? 30 : 65;
-
-  if (!isDeleting && currentCharIndex === currentFullText.length) {
-    executionSpeed = 2000;
-    isDeleting = true;
-  } else if (isDeleting && currentCharIndex === 0) {
-    isDeleting = false;
-    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-    executionSpeed = 350;
+  function show(name){
+    if(names.indexOf(name)<0) name='home';
+    names.forEach(function(n){ var v=document.getElementById('view-'+n); if(v) v.hidden=(n!==name); });
+    document.querySelectorAll('[data-route]').forEach(function(a){
+      if(a.getAttribute('data-route')===name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    var t=document.getElementById('view-'+name).getAttribute('data-title');
+    var md=document.querySelector('meta[name="description"]'), dsc=document.getElementById('view-'+name).getAttribute('data-desc');
+    if(md&&dsc) md.setAttribute('content',dsc);
+    document.title=(name==='home')?'TECHIE SHIV — Think Tech. Think Shiv.':t+' | Techie Shiv';
+    setMenu(false);
+    window.scrollTo(0,0);
   }
-  setTimeout(executeTypewriterLoop, executionSpeed);
-}
+  function fromHash(){ return (location.hash||'').replace(/^#\/?/,''); }
 
-document.addEventListener("DOMContentLoaded", () => {
-  typewriterTextTarget = document.getElementById("typewriter-text");
-  executeTypewriterLoop();
-});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#/"]');
+    if(a){
+      e.preventDefault();
+      var name=a.getAttribute('href').slice(2);
+      show(name);
+      try{ history.pushState({page:name},'','#/'+name); }catch(err){ /* preview frames may block this; the page still switches */ }
+      return;
+    }
+    if(!menu.contains(e.target)&&!burger.contains(e.target)) setMenu(false);
+  });
+  burger.addEventListener('click',function(e){ e.stopPropagation(); setMenu(!menu.classList.contains('open')); });
+  window.addEventListener('popstate',function(){ show(fromHash()); });
+  window.addEventListener('hashchange',function(){ show(fromHash()); });
+  show(fromHash());
+})();
 
-/* ── LIVE STATS (reads stats.json, updated automatically by GitHub Actions) ── */
-(function loadLiveStats(){
+/* ── TYPEWRITER ── */
+(function(){
+  var el=document.getElementById('typewriter');
+  var phrases=["Less scrolling. More learning ⚡","Tech, AI & things worth knowing 💡","Sharing things I wish I knew earlier 💯"];
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent=phrases[0]; el.style.borderRight='0'; return; }
+  var p=0,c=0,del=false;
+  (function tick(){
+    var full=phrases[p];
+    c+=del?-1:1;
+    el.textContent=full.substring(0,c);
+    var d=del?30:65;
+    if(!del&&c===full.length){ d=2000; del=true; }
+    else if(del&&c===0){ del=false; p=(p+1)%phrases.length; d=350; }
+    setTimeout(tick,d);
+  })();
+})();
+
+/* ── LIVE STATS (reads stats.json, refreshed by GitHub Actions) ── */
+(function(){
   function compact(n){
-    if (n >= 1e6) return (Math.round(n/1e5)/10) + 'M';
-    if (n >= 1e3) return (Math.round(n/100)/10) + 'K';
+    if(n>=1e6) return (Math.round(n/1e5)/10)+'M';
+    if(n>=1e3) return (Math.round(n/100)/10)+'K';
     return String(n);
   }
-  function fmt(value, type){
-    if (type === 'percent') return value.toFixed(1) + '%';
-    if (type === 'full')    return value.toLocaleString('en-IN');
-    return compact(value);
+  function fmt(v,t){
+    if(t==='percent') return v.toFixed(1)+'%';
+    if(t==='full') return v.toLocaleString('en-IN');
+    return compact(v);
   }
-  fetch('stats.json?v=' + Date.now(), { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw new Error('stats.json ' + r.status); return r.json(); })
-    .then(data => {
-      document.querySelectorAll('[data-stat]').forEach(el => {
-        const v = data[el.dataset.stat];
-        if (typeof v === 'number' && isFinite(v)) el.textContent = fmt(v, el.dataset.format);
+  fetch('stats.json?v='+Date.now(),{cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(data){
+      document.querySelectorAll('[data-stat]').forEach(function(el){
+        var v=data[el.dataset.stat];
+        if(typeof v==='number'&&isFinite(v)) el.textContent=fmt(v,el.dataset.format);
       });
-      const u = document.getElementById('stats-updated');
-      if (u && data.updated) {
-        const d = new Date(data.updated);
-        if (!isNaN(d)) u.textContent = 'updated ' + d.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+      if(data.updated){
+        var d=new Date(data.updated);
+        if(!isNaN(d)) document.querySelectorAll('.stats-updated').forEach(function(u){ u.textContent=d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); });
       }
     })
-    .catch(() => { /* keep the numbers already written in the HTML */ });
+    .catch(function(){ /* keep the numbers already in the HTML */ });
 })();
 </script>
 </body>
