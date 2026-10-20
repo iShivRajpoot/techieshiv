@@ -2,222 +2,608 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TECHIE SHIV — Honest Gadget Reviews & AI Tips</title>
-<meta name="description" content="Shiv Rajpoot (Techie Shiv): honest mobile and gadget reviews, tech tips and tricks, and simple AI guides.">
-<meta property="og:title" content="TECHIE SHIV — Honest Gadget Reviews & AI Tips">
-<meta property="og:description" content="Honest mobile and gadget reviews, tech tips and tricks, and simple AI guides.">
-<meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
-<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark')}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TECHIE SHIV — Think Tech. Think Shiv.</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+
+<style>
+/* ── SYSTEM THEME VARIABLES ── */
+:root[data-theme="dark"] {
+  --bg-main: #030712;
+  --bg-surface: #101827;
+  --bg-surface-hover: rgba(255, 255, 255, 0.04);
+  --bg-store: #050c1a;
+  --bg-pill: #111827;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --border-alpha: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(3, 7, 18, 0.85);
+  --menu-bg: rgba(3, 7, 18, 0.98);
+  --shadow-color: rgba(255, 79, 216, 0.15);
+}
+
+:root[data-theme="light"] {
+  --bg-main: #f9fafb;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: rgba(0, 0, 0, 0.02);
+  --bg-store: #f3f4f6;
+  --bg-pill: #e5e7eb;
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --border-alpha: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.04);
+  --nav-bg: rgba(249, 250, 251, 0.85);
+  --menu-bg: rgba(249, 250, 251, 0.98);
+  --shadow-color: rgba(255, 79, 216, 0.08);
+}
+
+:root {
+  --pink: #ff4fd8;
+  --purple: #a855f7;
+  --blue: #3b82f6;
+  --cyan: #06d6f7;
+}
+
+/* ── ENGINE RESET ── */
+*{ margin:0; padding:0; box-sizing:border-box; }
+@media(pointer:fine){ *{ cursor:none!important; } }
+
+html, body { 
+  max-width: 100%; 
+  overflow-x: hidden; 
+  width: 100%;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── THEME TRIGGER BUTTON ── */
+.theme-toggle {
+  background: none; border: none; cursor: pointer; position: relative;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 12px; background: var(--bg-surface-hover); border: 1px solid var(--border-light);
+  overflow: hidden; transition: transform 0.25s ease, background 0.3s;
+}
+.theme-toggle:hover { transform: scale(1.05); }
+.theme-toggle i { font-size: 18px; position: absolute; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease; }
+
+:root[data-theme="dark"] .fa-sun { transform: translateY(40px) rotate(180deg); opacity: 0; }
+:root[data-theme="dark"] .fa-moon { transform: translateY(0) rotate(0deg); color: var(--cyan); opacity: 1; }
+:root[data-theme="light"] .fa-sun { transform: translateY(0) rotate(0deg); color: #ffb900; opacity: 1; }
+:root[data-theme="light"] .fa-moon { transform: translateY(-40px) rotate(-180deg); opacity: 0; }
+
+/* ── INTERACTIVE MOUSE CURSORS ── */
+#cursor-cross, #cursor-dot{ display:none; }
+#cursor-cross{
+  position:fixed; z-index:99999; pointer-events:none;
+  width:28px; height:28px; transform:translate(-50%,-50%);
+  transition:transform .12s, opacity .15s;
+}
+#cursor-cross::before, #cursor-cross::after{ content:''; position:absolute; background: var(--text-main); border-radius:4px; }
+#cursor-cross::before{ width:2px; height:28px; left:50%; top:0; transform:translateX(-50%); }
+#cursor-cross::after { width:28px; height:2px; top:50%; left:0; transform:translateY(-50%); }
+
+#cursor-dot{
+  position:fixed; z-index:100000; pointer-events:none;
+  width:6px; height:6px; border-radius:50%; background:var(--pink); transform:translate(-50%,-50%);
+  box-shadow:0 0 10px var(--pink),0 0 20px var(--pink);
+  transition:width .2s,height .2s,background .2s;
+}
+#cursor-dot.hovered{ width:10px; height:10px; background:var(--cyan); box-shadow:0 0 14px var(--cyan),0 0 28px var(--cyan); }
+#cursor-cross.hovered{ transform:translate(-50%,-50%) rotate(45deg) scale(1.4); }
+#cursor-cross.hovered::before, #cursor-cross.hovered::after{ background:var(--pink); }
+
+.trail{
+  position:fixed; pointer-events:none; border-radius:50%; z-index:99990;
+  background:radial-gradient(circle,rgba(255,79,216,.45),transparent 70%);
+  transform:translate(-50%,-50%); animation:trail-fade .5s forwards;
+}
+@keyframes trail-fade{
+  0%   { opacity:1; width:14px; height:14px; }
+  100%{ opacity:0; width:2px;  height:2px;  }
+}
+
+/* ── NAVIGATION NAVIGATION MATRIX ── */
+nav{
+  position:fixed; top:0; left:0; right:0; height:68px;
+  display:flex; align-items:center; justify-content:space-between; padding:0 5%;
+  background: var(--nav-bg); backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border-light); z-index:10000;
+  transition: background 0.4s, border-color 0.4s;
+}
+.logo{ font-size:clamp(20px,3vw,30px); font-weight:900; letter-spacing:-1px; white-space:nowrap; color: var(--text-main); }
+.logo span{ color:var(--pink); }
+.nav-right-wrapper { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
+.nav-links{ display:flex; gap:clamp(16px,2vw,30px); }
+.nav-links a{
+  text-decoration:none; color: var(--text-muted); font-weight:600;
+  font-size:clamp(11px,1.2vw,14px); letter-spacing:.4px; text-transform:uppercase; transition:.3s;
+}
+.nav-links a:hover{ color: var(--text-main); }
+
+.hamburger{
+  display:none; flex-direction:column; gap:5px; background:none; border:none; padding:12px; cursor:pointer; position:relative; z-index:10002;
+}
+.hamburger span{ display:block; width:24px; height:2px; background: var(--text-main); border-radius:2px; transition:.3s; }
+
+.mobile-menu{
+  display:none; flex-direction:column; position:fixed; top:0; left:0; right:0; height: auto;
+  background: var(--menu-bg); backdrop-filter:blur(24px); border-bottom:1px solid var(--border-alpha);
+  padding:76px 5% 24px; z-index:9999; gap:0; transition: background 0.4s;
+  max-height:100vh; overflow-y:auto;
+}
+.mobile-menu a{
+  display:block; padding:16px 0; text-decoration:none; color: var(--text-muted);
+  font-weight:600; font-size:16px; border-bottom:1px solid var(--border-light);
+  text-transform:uppercase; letter-spacing:.5px; transition:.3s;
+}
+.mobile-menu a:hover{ color: var(--text-main); }
+.mobile-menu.open{ display:flex; }
+
+/* ── HERO SYSTEM & TEXT EFFECT ── */
+.hero{ min-height:100vh; min-height:100svh; padding:clamp(100px,13vh,140px) 5% clamp(60px,8vh,100px); position:relative; }
+.hero-inner{ max-width:1300px; margin:auto; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(30px,5vw,70px); align-items:center; }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:999px;
+  background: var(--bg-surface-hover); border:1px solid var(--border-alpha); margin-bottom:24px; font-size:13px;
+}
+.live-dot{ width:8px; height:8px; border-radius:50%; background:#00ff9d; box-shadow:0 0 10px #00ff9d; animation:pulse 2s infinite; }
+@keyframes pulse{ 0%,100%{ box-shadow:0 0 10px #00ff9d; } 50%{ box-shadow:0 0 22px #00ff9d; } }
+
+.hero h1{ font-size:clamp(42px,7.5vw,95px); line-height:.97; font-weight:900; margin-bottom:24px; }
+.gradient{ background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+/* TYPEWRITER WRAPPER SYSTEM CONTAINER */
+.typewriter-box { min-height: 52px; margin-bottom: 36px; display: flex; align-items: center; }
+@media(max-width:820px){ .typewriter-box { justify-content: center; min-height: 75px; } }
+
+.hero-sub {
+  font-size: clamp(16px,1.6vw,20px); line-height: 1.6; color: var(--text-muted); font-weight: 500;
+  white-space: pre-wrap; border-right: 3px solid var(--pink); padding-right: 4px;
+  animation: blink-cursor 0.75s step-end infinite; display: inline-block;
+}
+@keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: var(--pink); } }
+
+.hero-btns{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 12px; }
+.btn{
+  padding:clamp(13px,1.5vh,18px) clamp(22px,2.5vw,34px); border-radius:14px; text-decoration:none;
+  font-weight:700; color:white; transition:.35s cubic-bezier(.34,1.56,.64,1); font-size:clamp(13px,1.2vw,15px); white-space:nowrap;
+}
+.btn:hover{ transform:scale(1.06) translateY(-3px); box-shadow:0 16px 36px rgba(255,79,216,.22); }
+.primary{ background:linear-gradient(135deg,var(--pink),var(--purple)); }
+.secondary{ background: var(--bg-surface); border:1px solid var(--border-alpha); color: var(--text-main); }
+
+.socials{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:26px; align-items:center; width: 100%; }
+.social-btn{
+  width:clamp(46px,5vw,56px); height:clamp(46px,5vw,56px); min-width:0; flex:0 0 auto;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%; text-decoration:none; color:white; font-size:clamp(20px,2vw,24px);
+  transition:.35s cubic-bezier(.34,1.56,.64,1); box-shadow:0 6px 16px rgba(0,0,0,.18);
+}
+.social-btn span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.social-btn:hover{ transform:translateY(-4px) scale(1.1); }
+.instagram{ background:linear-gradient(135deg,#f09433,#dc2743,#bc1888); }
+.youtube  { background:linear-gradient(135deg,#ff0033,#ff4d4d); }
+.telegram { background:linear-gradient(135deg,#229ED9,#5cc8ff); }
+
+.hero-right{ position:relative; width: 100%; display: flex; flex-direction: column; align-items: center; }
+.photo-wrap{ width:clamp(240px,30vw,420px); height:clamp(240px,30vw,420px); position:relative; }
+.photo-ring{ width:100%; height:100%; border-radius:50%; padding:6px; background:linear-gradient(135deg,var(--pink),var(--purple)); }
+.photo-inner{ width:100%; height:100%; border-radius:50%; overflow:hidden; border:7px solid var(--bg-main); }
+.photo-inner img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.stat-card{
+  position:absolute; white-space:nowrap; background: var(--bg-surface); border:1px solid var(--border-alpha); border-radius:18px; padding:10px 14px;
+  display:flex; align-items:center; gap:10px; backdrop-filter:blur(12px); animation:floating 4s ease-in-out infinite; z-index:5;
+}
+@keyframes floating{ 0%,100%{ transform:translateY(0); } 50% { transform:translateY(-9px); } }
+.top-card   { top:10%; left:-16%; }
+.bottom-card{ bottom:10%; right:-16%; }
+
+.icon{ width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:17px; }
+.blue        { background:linear-gradient(135deg,#3b82f6,#06b6d4); }
+.purple-icon{ background:linear-gradient(135deg,#a855f7,#ec4899); }
+.stat-label{ font-size:11px; color: var(--text-muted); font-weight:600; }
+.stat-val  { font-size:20px; font-weight:900; color: var(--text-main); }
+
+.name-pill{
+  margin-top:24px; text-align:center; padding:16px 36px; border-radius:999px; background: var(--bg-pill);
+  border:1px solid var(--border-alpha); font-size:clamp(18px,2vw,24px); font-weight:900; letter-spacing:1px;
+  color: var(--text-main); text-shadow: 0 0 12px var(--shadow-color); box-shadow: 0 0 20px var(--shadow-color);
+}
+
+/* ── STRUCTURE LAYOUT PANELS ── */
+section{ padding:clamp(60px,8vw,100px) 5%; width:100%; clear:both; }
+.container{ max-width:1300px; margin:auto; width:100%; }
+.sec-tag{ color:var(--pink); font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; display:block; }
+.sec-title{ font-size:clamp(30px,5vw,54px); margin-bottom:16px; font-weight:900; line-height:1.05; }
+.sec-sub{ color: var(--text-muted); line-height:1.8; max-width:700px; }
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:44px; width:100%; }
+
+.card, .service, .audience-card{
+  background: var(--bg-surface); border:1px solid var(--border-alpha); border-radius:20px; padding:26px;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), background 0.4s, border-color 0.4s;
+}
+.card:hover, .service:hover, .audience-card:hover{ transform:scale(1.04) translateY(-4px); box-shadow:0 16px 38px var(--shadow-color); border-color:rgba(255,79,216,.2); }
+.card h3, .service h3, .audience-card h3{ font-weight:800; margin-bottom:10px; }
+.card p, .service p, .audience-card p{ color: var(--text-muted); line-height:1.8; }
+
+.big{ font-size:clamp(36px,5vw,50px); font-weight:900; margin-top:10px; }
+.review{ color:#ffc83d; margin-bottom:14px; }
+.handle{ margin-top:16px; color:var(--pink); font-weight:700; }
+
+/* ── AFFILIATE STORE MODAL LAYOUT ── */
+#store{ background: var(--bg-store); }
+.store-tag{
+  display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px;
+  background:rgba(255,200,61,.08); border:1px solid rgba(255,200,61,.2); color:#ffc83d; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px;
+}
+.store-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:24px; margin-top:32px; width:100%; }
+.product-card{
+  background: var(--bg-surface); border:1px solid var(--border-alpha); border-radius:22px; overflow:hidden;
+  transition: transform .38s cubic-bezier(.34,1.56,.64,1), border-color 0.4s; display:flex; flex-direction:column; position:relative; width:100%;
+}
+.product-card:hover{ transform:translateY(-7px) scale(1.02); box-shadow:0 20px 48px var(--shadow-color); border-color:rgba(255,79,216,.25); }
+.product-badge{ position:absolute; top:12px; left:12px; padding:4px 12px; border-radius:999px; font-size:10px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; z-index:2; }
+.badge-pick{ background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; }
+
+.product-thumb{ width:100%; height:280px; display:flex; align-items:center; justify-content:center; background: var(--bg-pill); overflow:hidden; position:relative; padding: 20px; }
+.product-thumb img{ width:100%; height:100%; object-fit:contain; display:block; max-width:100%; max-height:100%; transition: transform 0.3s ease; }
+.product-card:hover .product-thumb img { transform: scale(1.03); }
+
+.product-body{ padding:22px; flex:1; display:flex; flex-direction:column; }
+.product-category{ font-size:10px; font-weight:700; color:var(--pink); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
+.product-name{ font-size:16px; font-weight:800; margin-bottom:8px; line-height:1.4; }
+.product-desc{ font-size:13px; color: var(--text-muted); line-height:1.7; flex:1; margin-bottom:16px; }
+.product-footer{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto; width: 100%; }
+.product-price{ font-size:20px; font-weight:900; background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.product-price small{ font-size:11px; font-weight:500; color:#6b7280; -webkit-text-fill-color:#6b7280; text-decoration:line-through; margin-left:4px; }
+.buy-btn{ display:inline-flex; align-items:center; gap:7px; padding:11px 20px; border-radius:12px; background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; font-weight:700; font-size:13px; text-decoration:none; transition:.28s; white-space:nowrap; }
+.buy-btn:hover{ transform:scale(1.05); box-shadow:0 8px 22px rgba(255,79,216,.35); }
+
+.store-note{ margin-top:32px; padding:16px 22px; border-radius:14px; background:rgba(255,200,61,.05); border:1px solid rgba(255,200,61,.12); display:flex; align-items:flex-start; gap:12px; color: var(--text-main); font-size:13.5px; line-height:1.65; }
+.store-note i{ color:#ffc83d; font-size:18px; flex-shrink:0; margin-top:2px; }
+
+.contact-wrapper{ display:flex; justify-content:center; margin-top:38px; width: 100%; }
+.email-btn{ display:inline-flex; align-items:center; justify-content:center; padding:18px 36px; border-radius:16px; background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; text-decoration:none; font-weight:700; font-size:clamp(13px,1.3vw,16px); text-align:center; max-width: 100%; }
+.email-btn:hover{ transform:scale(1.06) translateY(-3px); box-shadow:0 16px 38px rgba(255,79,216,.28); }
+
+footer{ padding:44px 20px; text-align:center; border-top:1px solid var(--border-light); color: var(--text-muted); font-size:13px; width:100%; }
+
+/* ── SYSTEM RESPONSIVE BREAKER ENGINE ── */
+@media(max-width:1140px){ .top-card { left:-10%; } .bottom-card{ right:-10%; } }
+@media(max-width:1024px){ .top-card { left:-6%; } .bottom-card{ right:-6%; } }
+@media(max-width:820px){
+  .nav-links{ display:none; } .hamburger{ display:flex; }
+  .hero-inner{ grid-template-columns:minmax(0,1fr); text-align:center; }
+  .eyebrow{ font-size:12px; padding:8px 14px; }
+  .hero h1{ font-size:clamp(36px,11vw,64px); }
+  .sec-sub, .card p{ overflow-wrap:anywhere; }
+  .hero-right{ display:flex; flex-direction:column; align-items:center; margin-top: 40px; width:100%; }
+  .hero-btns, .socials{ justify-content:center; }
+  .photo-wrap{ width:clamp(220px,55vw,340px); height:clamp(220px,55vw,340px); }
+  .top-card { top:8%; left:-12%; } .bottom-card{ bottom:8%; right:-12%; }
+}
+@media(max-width:520px) {
+  .hero-inner{ gap:24px; }
+  .photo-wrap{ width:240px; height:240px; margin-bottom: 20px; }
+  .top-card { top: 4%; left: -8%; } 
+  
+  .bottom-card{ bottom: 4%; right: -8%; animation: floating 4s ease-in-out infinite; }
+  
+  .icon{ width:32px; height:32px; font-size:14px; border-radius: 9px; }
+  .stat-label{ font-size:9px; } .stat-val{ font-size:15px; }
+  .store-grid, .grid{ grid-template-columns:minmax(0,1fr); gap: 20px; }
+  .product-thumb{ height: 220px; padding:14px; }
+  .email-btn{ padding:16px 18px; font-size:13px; word-break:break-all; width:100%; }
+  .hero-btns{ flex-direction:column; align-items:stretch; }
+  .hero-btns .btn{ text-align:center; }
+  .name-pill{ padding:12px 26px; margin-top:20px; }
+  .product-footer{ flex-wrap:wrap; }
+  .buy-btn{ flex:1; justify-content:center; }
+  .card:hover, .service:hover, .audience-card:hover, .product-card:hover{ transform:none; }
+  .typewriter-box{ min-height:80px; }
+  .hero-sub{ font-size:16px; }
+}
+@media(max-width:360px){
+  .top-card, .bottom-card{ padding:8px 10px; gap:8px; }
+  .logo{ font-size:19px; }
+}
+</style>
 </head>
+
 <body>
 
-<header class="nav">
-  <div class="wrap">
-    <a class="logo" href="#top">TECHIE <span>SHIV</span></a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#articles">Articles</a>
-      <a href="#videos">Videos</a>
+<div id="cursor-dot"></div>
+<div id="cursor-cross"></div>
+
+<nav>
+  <div class="logo">TECHIE <span>SHIV</span></div>
+  <div class="nav-right-wrapper">
+    <div class="nav-links">
+      <a href="#stats">Stats</a>
+      <a href="#audience">Audience</a>
+      <a href="#services">Services</a>
       <a href="#store">Store</a>
-      <a href="#work">Work</a>
+      <a href="#testimonials">Love</a>
       <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme"><i class="fas fa-moon ico-moon"></i><i class="fas fa-sun ico-sun"></i></button>
-      <button class="icon-btn hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
     </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle Theme">
+      <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+    </button>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Toggle Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</header>
-<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
-  <a href="#about">About</a>
-  <a href="#reviews">Reviews</a>
-  <a href="#articles">Articles</a>
-  <a href="#videos">Videos</a>
-  <a href="#store">Store</a>
-  <a href="#work">Work</a>
-  <a href="#contact">Contact</a>
 </nav>
 
-<main>
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="wrap hero-grid">
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#stats" onclick="closeMenu()">Stats</a>
+  <a href="#audience" onclick="closeMenu()">Audience</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#store" onclick="closeMenu()">Store</a>
+  <a href="#testimonials" onclick="closeMenu()">Love</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
     <div>
-      <div class="eyebrow"><span class="dot"></span>Mobile &amp; gadget reviews · AI tips</div>
-      <h1>Honest <span class="grad">gadget reviews</span>, smart AI tips.</h1>
-      <p class="typed" id="typed" aria-live="off"></p>
-      <div class="hero-btns">
-        <a href="#reviews" class="btn btn-primary">Read Reviews</a>
-        <a href="#videos" class="btn btn-ghost">Watch Videos</a>
+      <div class="eyebrow"><div class="live-dot"></div>Open to Brand Collaborations</div>
+      <h1>I Build Content<br>That Gets<br><span class="gradient">Attention.</span></h1>
+       
+      <div class="typewriter-box">
+        <p class="hero-sub" id="typewriter-text"></p>
       </div>
-      <div class="socials">
-        <a href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" class="social instagram"><i class="fab fa-instagram"></i>Instagram</a>
-        <a href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" class="social youtube"><i class="fab fa-youtube"></i>YouTube</a>
-        <a href="https://t.me/techie_shiv" target="_blank" rel="noopener" class="social telegram"><i class="fab fa-telegram-plane"></i>Telegram</a>
+
+      <div class="hero-btns">
+        <a href="#services" class="btn primary">Work With Me</a>
+        <a href="https://www.instagram.com/techie.shiv/" target="_blank" class="btn secondary">View Profile</a>
       </div>
     </div>
 
-    <div class="hero-visual">
+    <div class="hero-right">
       <div class="photo-wrap">
-        <div class="stat-chip chip-top">
-          <div class="chip-icon blue"><i class="fas fa-user-group"></i></div>
-          <div><div class="chip-label">Followers</div><div class="chip-val" data-stat="followers" data-format="compact">3.9K</div></div>
+        <div class="stat-card top-card">
+          <div class="icon blue">👥</div>
+          <div><div class="stat-label">Followers</div><div class="stat-val" data-stat="followers" data-format="compact">3.9K</div></div>
         </div>
-        <div class="photo-ring"><div class="photo-inner"><img src="profile.png" alt="Shiv Rajpoot"></div></div>
-        <div class="stat-chip chip-bottom">
-          <div class="chip-icon purple"><i class="fas fa-chart-line"></i></div>
-          <div><div class="chip-label">Reach · 30d</div><div class="chip-val" data-stat="reach" data-format="compact">388.9K</div></div>
+        <div class="photo-ring">
+          <div class="photo-inner"><img src="profile.png" alt="Shiv Rajpoot"></div>
+        </div>
+        <div class="stat-card bottom-card">
+          <div class="icon purple-icon">📈</div>
+          <div><div class="stat-label">Reach · 30d</div><div class="stat-val" data-stat="reach" data-format="compact">355.8K</div></div>
         </div>
       </div>
       <div class="name-pill">Shiv Rajpoot</div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">About</span>
-      <h2 class="sec-title">Hi, I'm Shiv.</h2>
-    </div>
-    <p class="about-text">I'm a tech creator starting with <strong>honest mobile and gadget reviews</strong>, plus simple tips and tricks. I'm also exploring AI in public and sharing what actually works. Anything that doesn't fit in a reel goes into articles right here.</p>
-    <div class="grid">
-      <div class="card"><div class="f-icon"><i class="fas fa-mobile-screen-button"></i></div><h3>Honest reviews</h3><p>Hands-on opinions: what's good, what's not, and who should actually buy.</p></div>
-      <div class="card"><div class="f-icon"><i class="fas fa-lightbulb"></i></div><h3>Tips &amp; tricks</h3><p>Short videos that save you time on your phone and PC.</p></div>
-      <div class="card"><div class="f-icon"><i class="fas fa-robot"></i></div><h3>AI, explained simply</h3><p>Learning AI tools in public and teaching how to use them well.</p></div>
-      <div class="card"><div class="f-icon"><i class="fas fa-newspaper"></i></div><h3>Articles</h3><p>Longer write-ups for things that don't fit in a reel.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Gadget Reviews</span>
-      <h2 class="sec-title">Reviews I stand behind</h2>
-      <p class="sec-sub">Real opinions, with the downsides included. If I wouldn't buy it, I'll say so.</p>
-    </div>
-    <div class="chips" id="reviews-chips" hidden></div>
-    <div class="grid grid-wide" id="reviews-grid"><div class="empty">Loading reviews…</div></div>
-    <p class="note-line">Some links are affiliate links. I earn a small commission at no extra cost to you, and it never changes my verdict.</p>
-  </div>
-</section>
-
-<!-- ARTICLES -->
-<section id="articles" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Articles</span>
-      <h2 class="sec-title">Read more than a reel</h2>
-      <p class="sec-sub">Deeper guides, review write-ups and AI notes that don't fit in 60 seconds.</p>
-    </div>
-    <div class="grid grid-wide" id="articles-grid"><div class="empty">Loading articles…</div></div>
-  </div>
-</section>
-
-<!-- VIDEOS -->
-<section id="videos">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Videos</span>
-      <h2 class="sec-title">Tips, tricks &amp; AI</h2>
-      <p class="sec-sub">Reels and videos from Instagram and YouTube, all in one place.</p>
-    </div>
-    <div class="chips" id="videos-chips" hidden></div>
-    <div class="grid grid-wide" id="videos-grid"><div class="empty">Loading videos…</div></div>
-  </div>
-</section>
-
-<!-- STORE -->
-<section id="store" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Store</span>
-      <h2 class="sec-title">My favourite picks</h2>
-      <p class="sec-sub">Books and gear I genuinely recommend.</p>
-    </div>
-    <div class="grid grid-wide" id="store-grid"><div class="empty">Loading picks…</div></div>
-    <p class="note-line">These are affiliate links. I earn a commission at no extra cost to you. 🙏</p>
-  </div>
-</section>
-
-<!-- WORK / PORTFOLIO -->
-<section id="work">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Work With Me</span>
-      <h2 class="sec-title">What I can help with</h2>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="f-icon"><i class="fas fa-bullhorn"></i></div><h3>Brand promotions</h3><p>Product promotion through honest, engaging creator content.</p></div>
-      <div class="card"><div class="f-icon"><i class="fas fa-video"></i></div><h3>UGC content</h3><p>Short-form user-generated content for your brand.</p></div>
-      <div class="card"><div class="f-icon"><i class="fas fa-microchip"></i></div><h3>Tech content</h3><p>Educational tech and AI content, explained simply.</p></div>
-      <div class="card"><div class="f-icon"><i class="fas fa-wand-magic-sparkles"></i></div><h3>Creator branding</h3><p>Build a strong online presence with a clear identity.</p></div>
-    </div>
-
-    <div class="sec-head" style="margin-top:56px;margin-bottom:20px">
-      <span class="tag">By The Numbers</span>
-      <h2 class="sec-title" style="font-size:clamp(24px,3.4vw,34px)">Instagram, last 30 days</h2>
-    </div>
-    <div class="stats">
-      <div class="stat"><b data-stat="followers" data-format="full">3,875</b><span>Followers</span></div>
-      <div class="stat"><b data-stat="reach" data-format="compact">388.9K</b><span>Reach</span></div>
-      <div class="stat"><b data-stat="views" data-format="compact">423.3K</b><span>Views</span></div>
-      <div class="stat"><b data-stat="engagement" data-format="percent">10.7%</b><span>Engagement rate</span></div>
-    </div>
-    <p class="note-line">Source: Instagram analytics · <span id="stats-updated">updated regularly</span></p>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="love" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Community Love</span>
-      <h2 class="sec-title">What people say</h2>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="stars">★★★★★</div><p class="quote">"Smart and easy to understand reels."</p><div class="handle">@techmodee</div></div>
-      <div class="card"><div class="stars">★★★★★</div><p class="quote">"Useful things for creators. Keep going 🔥"</p><div class="handle">@ankit_ankk</div></div>
-      <div class="card"><div class="stars">★★★★★</div><p class="quote">"Your explanation level is completely clean and incredible. Loved it!"</p><div class="handle">@iam_shubham</div></div>
-      <div class="card"><div class="stars">★★★★★</div><p class="quote">"Highly qualitative content blueprint. Pure value additions."</p><div class="handle">@growth_matrix</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="cta">
-      <h2>Let's build something together</h2>
-      <p>For collaborations, product reviews or just to say hi.</p>
-      <div class="cta-links">
-        <a class="btn btn-primary" href="mailto:contact.shivrajpoot@gmail.com"><i class="fas fa-envelope"></i>contact.shivrajpoot@gmail.com</a>
-        <a class="btn btn-ghost" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i>DM on Instagram</a>
+      <div class="socials">
+        <a href="https://www.instagram.com/techie.shiv/" target="_blank" class="social-btn instagram" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+        <a href="https://www.youtube.com/@techie.shiv." target="_blank" class="social-btn youtube" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i><span>YouTube</span></a>
+        <a href="https://t.me/techie_shiv" target="_blank" class="social-btn telegram" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i><span>Telegram</span></a>
       </div>
     </div>
   </div>
 </section>
-</main>
 
-<footer>
-  <div class="wrap">
-    <p>© 2026 Shiv Rajpoot — Think Tech. Think Shiv.</p>
-    <p>Reviews are my honest opinion. Some links are affiliate links.</p>
+<section id="stats">
+  <div class="container">
+    <span class="sec-tag">By The Numbers</span>
+    <h2 class="sec-title">Performance &amp; Growth</h2>
+    <p class="sec-sub">Instagram analytics · last 30 days · <span id="stats-updated">updated regularly</span></p>
+    <div class="grid">
+      <div class="card"><h3>Followers</h3><div class="big" data-stat="followers" data-format="full">3,875</div><p>Creator community on Instagram.</p></div>
+      <div class="card"><h3>Reach</h3><div class="big" data-stat="reach" data-format="compact">355.8K</div><p>Unique accounts reached in the last 30 days.</p></div>
+      <div class="card"><h3>Views</h3><div class="big" data-stat="views" data-format="compact">423.3K</div><p>Total content views in the last 30 days.</p></div>
+      <div class="card"><h3>Engagement Rate</h3><div class="big" data-stat="engagement" data-format="percent">10.7%</div><p>Strong audience interaction.</p></div>
+    </div>
   </div>
-</footer>
+</section>
 
-<script src="site.js"></script>
-<script src="home.js"></script>
+<section id="audience">
+  <div class="container">
+    <span class="sec-tag">Audience</span>
+    <h2 class="sec-title">Who Watches My Content</h2>
+    <div class="grid">
+      <div class="audience-card"><h3>Tech Learners</h3><p>People learning AI tools and productivity.</p></div>
+      <div class="audience-card"><h3>Students</h3><p>Students looking for career and skill growth.</p></div>
+      <div class="audience-card"><h3>Creators</h3><p>Content creators improving reach and editing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <span class="sec-tag">Services</span>
+    <h2 class="sec-title">What I Can Help With</h2>
+    <div class="grid">
+      <div class="service"><h3>Brand Promotions</h3><p>Promote products through engaging creator content.</p></div>
+      <div class="service"><h3>UGC Content</h3><p>Short-form modern user-generated content.</p></div>
+      <div class="service"><h3>Tech Content</h3><p>Educational tech &amp; AI focused content strategy.</p></div>
+      <div class="service"><h3>Creator Branding</h3><p>Build a strong online presence with premium identity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="store">
+  <div class="container">
+    <div class="store-tag"><i class="fas fa-store"></i> Affiliate Store</div>
+    <h2 class="sec-title">My Favourite Picks 🛍️</h2>
+    <div class="store-grid">
+       
+      <div class="product-card">
+        <span class="product-badge badge-pick">Must Read</span>
+        <div class="product-thumb">
+          <img src="Zero to One.png" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/Zero%20to%20One.png';" alt="Zero to One Book">
+        </div>
+        <div class="product-body">
+          <div class="product-category">Books</div>
+          <div class="product-name">Zero to One: Notes on Start Ups, or How to Build the Future</div>
+          <div class="product-desc">Legendary startup blueprint by Peter Thiel. Essential reading for every modern creator and digital entrepreneur.</div>
+          <div class="product-footer">
+            <div class="product-price">₹283 <small>₹499</small></div>
+            <a href="https://bitli.in/JTDobJx" target="_blank" class="buy-btn">Buy Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-badge badge-pick">Must Read</span>
+        <div class="product-thumb">
+          <img src="The Hard Thing about Hard Thing.png" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/The%20Hard%20Thing%20about%20Hard%20Thing.png';" alt="The Hard Thing About Hard Things">
+        </div>
+        <div class="product-body">
+          <div class="product-category">Books</div>
+          <div class="product-name">The Hard Thing About Hard Things by Ben Horowitz</div>
+          <div class="product-desc">Brutally honest management insights and tactical startup leadership execution guidelines straight from Silicon Valley war stories.</div>
+          <div class="product-footer">
+            <div class="product-price">₹275 <small>₹599</small></div>
+            <a href="https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/" target="_blank" class="buy-btn">Buy Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="store-note"><i class="fas fa-info-circle"></i><span>These are affiliate links — I earn a commission at no extra cost to you! 🙏</span></div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <span class="sec-tag">Community Love</span>
+    <h2 class="sec-title">What People Say</h2>
+    <div class="grid">
+      <div class="card"><div class="review">★★★★★</div><p>"Smart and easy to understand reels."</p><div class="handle">@techmodee</div></div>
+      <div class="card"><div class="review">★★★★★</div><p>"Useful things for creators. Keep going 🔥"</p><div class="handle">@ankit_ankk</div></div>
+      <div class="card"><div class="review">★★★★★</div><p>"Your explanation level is completely clean and incredible. Loved it!"</p><div class="handle">@iam_shubham</div></div>
+      <div class="card"><div class="review">★★★★★</div><p>"Highly qualitative content blueprint. Pure value additions."</p><div class="handle">@growth_matrix</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <span class="sec-tag">Let's Work Together</span>
+    <h2 class="sec-title">Ready To Build Something Amazing?</h2>
+    <div class="contact-wrapper">
+      <a href="mailto:contact.shivrajpoot@gmail.com" class="email-btn">contact.shivrajpoot@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Shiv Rajpoot — Think Tech. Think Shiv.</footer>
+
+<script>
+/* ── THEME MANAGER ── */
+const themeToggle = document.getElementById('themeToggle');
+const rootElement = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+rootElement.setAttribute('data-theme', savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const activeTheme = rootElement.getAttribute('data-theme');
+  const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
+  rootElement.setAttribute('data-theme', targetTheme);
+  localStorage.setItem('theme', targetTheme);
+});
+
+/* ── MOBILE MENU SYSTEM ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+if(hamburger && mobileMenu) {
+  hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('open'); });
+  document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) mobileMenu.classList.remove('open'); });
+}
+function closeMenu(){ if(mobileMenu) mobileMenu.classList.remove('open'); }
+
+/* ── MOUSE CURSOR DRIVERS ── */
+const dot = document.getElementById('cursor-dot');
+const cross = document.getElementById('cursor-cross');
+if(window.matchMedia('(pointer:fine)').matches && dot && cross){
+  dot.style.display = cross.style.display = 'block';
+  let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx+'px'; dot.style.top = my+'px';
+    const t = document.createElement('div'); t.className = 'trail'; t.style.cssText = `left:${mx}px;top:${my}px`;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 500);
+  });
+  (function loop(){ cx += (mx-cx)*0.14; cy += (my-cy)*0.14; cross.style.left = cx+'px'; cross.style.top = cy+'px'; requestAnimationFrame(loop); })();
+}
+
+/* ── TYPEWRITER ENGINE ── */
+const phrases = [
+  "Less scrolling. More learning ⚡",
+  "Tech, AI & things worth knowing 💡",
+  "Sharing things I wish I knew earlier 💯"
+];
+let currentPhraseIndex = 0;
+let currentCharIndex = 0;
+let isDeleting = false;
+let typewriterTextTarget;
+
+function executeTypewriterLoop() {
+  if (!typewriterTextTarget) return;
+  const currentFullText = phrases[currentPhraseIndex];
+  
+  if (isDeleting) {
+    typewriterTextTarget.textContent = currentFullText.substring(0, currentCharIndex - 1);
+    currentCharIndex--;
+  } else {
+    typewriterTextTarget.textContent = currentFullText.substring(0, currentCharIndex + 1);
+    currentCharIndex++;
+  }
+
+  let executionSpeed = isDeleting ? 30 : 65;
+
+  if (!isDeleting && currentCharIndex === currentFullText.length) {
+    executionSpeed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && currentCharIndex === 0) {
+    isDeleting = false;
+    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+    executionSpeed = 350;
+  }
+  setTimeout(executeTypewriterLoop, executionSpeed);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  typewriterTextTarget = document.getElementById("typewriter-text");
+  executeTypewriterLoop();
+});
+
+/* ── LIVE STATS (reads stats.json, updated automatically by GitHub Actions) ── */
+(function loadLiveStats(){
+  function compact(n){
+    if (n >= 1e6) return (Math.round(n/1e5)/10) + 'M';
+    if (n >= 1e3) return (Math.round(n/100)/10) + 'K';
+    return String(n);
+  }
+  function fmt(value, type){
+    if (type === 'percent') return value.toFixed(1) + '%';
+    if (type === 'full')    return value.toLocaleString('en-IN');
+    return compact(value);
+  }
+  fetch('stats.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error('stats.json ' + r.status); return r.json(); })
+    .then(data => {
+      document.querySelectorAll('[data-stat]').forEach(el => {
+        const v = data[el.dataset.stat];
+        if (typeof v === 'number' && isFinite(v)) el.textContent = fmt(v, el.dataset.format);
+      });
+      const u = document.getElementById('stats-updated');
+      if (u && data.updated) {
+        const d = new Date(data.updated);
+        if (!isNaN(d)) u.textContent = 'updated ' + d.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+      }
+    })
+    .catch(() => { /* keep the numbers already written in the HTML */ });
+})();
+</script>
 </body>
 </html>
