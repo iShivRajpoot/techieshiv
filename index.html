@@ -205,6 +205,8 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:50;padding-inline:var(--gutte
   background:radial-gradient(circle,var(--blob1),transparent 65%);pointer-events:none}
 .page .wrap{z-index:1}
 .page-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(30px,5vw,52px)}
+#catalog>.sub:first-child{margin-top:0}
+.catalog-empty{color:var(--muted)}
 .sub{font-size:clamp(21px,2.2vw,26px);letter-spacing:-.015em;font-weight:700;margin:clamp(48px,7vw,80px) 0 22px}
 
 /* insights */
@@ -624,6 +626,7 @@ footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
         <h2>Store</h2>
         <p class="lead">Books I recommend. Tap Buy now to open the seller's page.</p>
       </div>
+      <div id="catalog">
       <h3 class="sub" style="margin-top:0">Books</h3>
       <div class="products">
 
@@ -657,6 +660,7 @@ footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
           </div>
         </article>
 
+      </div>
       </div>
       <p class="note"><i class="fas fa-circle-info"></i><span>These are affiliate links. I earn a commission at no extra cost to you.</span></p>
     </div>
@@ -795,18 +799,25 @@ footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
     h1.innerHTML=h1.textContent.trim().split(/\s+/).map(function(w,i){ return '<span class="w" style="--d:'+(i*80)+'ms">'+w+'</span>'; }).join(' ');
   }
 
-  /* reveal on scroll */
-  $$('.sec-top,.page-head,.chart-card,.cta,.rows,.note,.after,.sub,.ticker').forEach(function(e){ e.classList.add('reveal'); });
-  $$('.kpis,.pillars,.bento,.products,.comments,.brief').forEach(function(e){
-    e.classList.add('stagger');
-    Array.prototype.forEach.call(e.children,function(c,i){ c.style.setProperty('--i',i); });
-  });
-  $$('.kpi,.tile,.product,.comment,.chart-card,.brief > div').forEach(function(e){ e.classList.add('spot'); });
+  /* reveal on scroll (prepare() can be called again for content added later, e.g. the store catalog) */
   var hasIO='IntersectionObserver' in window;
   var io=hasIO?new IntersectionObserver(function(es){
     es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
   },{threshold:.12,rootMargin:'0px 0px -5% 0px'}):null;
-  $$('.reveal,.stagger').forEach(function(e){ if(io&&!reduced) io.observe(e); else e.classList.add('in'); });
+  function prepare(root){
+    $$('.sec-top,.page-head,.chart-card,.cta,.rows,.note,.after,.sub,.ticker',root).forEach(function(e){ e.classList.add('reveal'); });
+    $$('.kpis,.pillars,.bento,.products,.comments,.brief',root).forEach(function(e){
+      e.classList.add('stagger');
+      Array.prototype.forEach.call(e.children,function(c,i){ c.style.setProperty('--i',i); });
+    });
+    $$('.kpi,.tile,.product,.comment,.chart-card,.brief > div',root).forEach(function(e){ e.classList.add('spot'); });
+    $$('.reveal,.stagger',root).forEach(function(e){
+      if(e._seen||e.classList.contains('in')) return; e._seen=true;
+      if(io&&!reduced) io.observe(e); else e.classList.add('in');
+    });
+  }
+  window.__prepare=prepare;
+  prepare(document);
 
   /* number formatting + count-up */
   function compact(n){
@@ -971,6 +982,51 @@ footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
       });
     }
   }
+})();
+
+/* ── STORE CATALOG: reads products.json (the built-in cards stay if the file is missing or empty) ── */
+(function(){
+  var box=document.getElementById('catalog'); if(!box) return;
+  function safeUrl(u){ return typeof u==='string'&&/^https?:\/\//i.test(u); }
+  function el(tag,cls,text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+  function money(v){ return typeof v==='number'?'₹'+v.toLocaleString('en-IN'):String(v); }
+  function card(p){
+    var art=el('article','product'), th=el('div','thumb'), img=document.createElement('img');
+    img.src=p.image||''; img.alt=p.alt||p.name; img.loading='lazy'; img.decoding='async';
+    if(p.imageFallback){ img.onerror=function(){ img.onerror=null; img.src=p.imageFallback; }; }
+    th.appendChild(img); art.appendChild(th);
+    var body=el('div','p-body');
+    body.appendChild(el('div','p-tag',p.category||'Product'));
+    body.appendChild(el('div','p-name',p.name));
+    if(p.description) body.appendChild(el('p','p-desc',p.description));
+    var foot=el('div','p-foot');
+    if(p.price!==undefined&&p.price!==null&&p.price!==''){
+      var price=el('div','price',money(p.price));
+      if(p.oldPrice) price.appendChild(el('s',null,money(p.oldPrice)));
+      foot.appendChild(price);
+    }
+    var buy=el('a','buy'); buy.href=p.link; buy.target='_blank'; buy.rel='noopener sponsored';
+    buy.appendChild(document.createTextNode('Buy now ')); buy.appendChild(el('i','fas fa-arrow-right'));
+    foot.appendChild(buy); body.appendChild(foot); art.appendChild(body);
+    return art;
+  }
+  fetch('products.json?v='+Date.now(),{cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(data){
+      var list=((data&&data.products)||[]).filter(function(p){ return p&&p.name&&safeUrl(p.link); });
+      if(!list.length) return;
+      var groups={}, order=[];
+      list.forEach(function(p){ var c=p.category||'Products'; if(!groups[c]){ groups[c]=[]; order.push(c); } groups[c].push(p); });
+      box.textContent='';
+      order.forEach(function(c){
+        box.appendChild(el('h3','sub',c));
+        var grid=el('div','products');
+        groups[c].forEach(function(p){ grid.appendChild(card(p)); });
+        box.appendChild(grid);
+      });
+      if(window.__prepare) window.__prepare(box);
+    })
+    .catch(function(){ /* keep the built-in cards */ });
 })();
 </script>
 </body>
