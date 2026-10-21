@@ -1,0 +1,25 @@
+{
+  "_how_to_add": "Copy one {...} block below, paste it after the last one with a comma between blocks, then change the values. Keep the quotes. oldPrice is optional.",
+  "products": [
+    {
+      "category": "Books",
+      "name": "Zero to One: Notes on Start Ups, or How to Build the Future",
+      "description": "Peter Thiel's startup blueprint. Essential reading for modern creators and digital entrepreneurs.",
+      "price": 283,
+      "oldPrice": 499,
+      "image": "Zero to One.png",
+      "imageFallback": "https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/Zero%20to%20One.png",
+      "link": "https://bitli.in/JTDobJx"
+    },
+    {
+      "category": "Books",
+      "name": "The Hard Thing About Hard Things by Ben Horowitz",
+      "description": "Honest management lessons and startup leadership stories from Silicon Valley.",
+      "price": 275,
+      "oldPrice": 599,
+      "image": "The Hard Thing about Hard Thing.png",
+      "imageFallback": "https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/The%20Hard%20Thing%20about%20Hard%20Thing.png",
+      "link": "https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/"
+    }
+  ]
+}
