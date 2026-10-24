@@ -227,6 +227,7 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:50;padding-inline:var(--gutte
 .k-l{color:var(--muted);font-size:15px;font-weight:500}
 
 /* chart */
+.off{display:none!important}
 .chart-card{padding:clamp(18px,2.4vw,28px);border-radius:28px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--shadow)}
 .chart{position:relative;width:100%;min-height:220px}
 .chart svg{display:block;width:100%;overflow:visible;touch-action:pan-y}
@@ -510,7 +511,7 @@ footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
 
   <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span></div></div>
 
-  <section class="home-sec">
+  <section class="home-sec off"><!-- Daily reach chart hidden for now: remove class "off" to show it again -->
     <div class="wrap">
       <div class="sec-top">
         <div>
@@ -592,8 +593,8 @@ footer{padding:32px 0 40px;border-top:1px solid var(--card-b)}
 </div>
       <p class="updated">Updated <span class="stats-updated">regularly</span>.</p>
 
-      <h3 class="sub">Daily reach</h3>
-      <div class="chart-card">
+      <h3 class="sub off">Daily reach</h3><!-- hidden for now: remove class "off" to show again -->
+      <div class="chart-card off">
         <div class="chart" data-chart="daily_reach">
           <div class="chart-empty"><i class="fas fa-chart-line"></i><span>The daily reach chart appears after the next automatic stats update.</span></div>
         </div>
