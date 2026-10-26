@@ -35,11 +35,11 @@
   --ease:cubic-bezier(.22,.8,.22,1);
 }
 :root[data-theme="dark"]{
-  --bg:#040208; --bg2:#0B0714; --text:#F8F5FF; --muted:#B2ABCB; --purple:#8B5CF6; --accent:#FFD21F;
-  --g1:rgba(255,255,255,.17); --g2:rgba(255,255,255,.035); --edge:rgba(255,255,255,.42);
+  --bg:#07040F; --bg2:#0B0714; --text:#FFFFFF; --muted:#C9C3E0; --purple:#8B5CF6; --accent:#FFD21F;
+  --g1:rgba(255,255,255,.22); --g2:rgba(255,255,255,.055); --edge:rgba(255,255,255,.42);
   --card:rgba(255,255,255,.07); --card-b:rgba(255,255,255,.15); --pill:rgba(22,15,40,.5);
   --shadow:0 30px 60px -28px rgba(0,0,0,.8); --glow:rgba(139,92,246,.5); --glow-y:rgba(255,210,31,.32);
-  --b1:rgba(139,92,246,.80); --b2:rgba(168,85,247,.42); --b3:rgba(255,176,32,.50); --b4:rgba(79,70,229,.55);
+  --b1:rgba(157,107,255,1); --b2:rgba(217,70,239,.62); --b3:rgba(255,190,40,.72); --b4:rgba(70,95,255,.8);
   --tint-p:linear-gradient(150deg,rgba(176,108,255,.62),rgba(109,40,217,.42) 55%,rgba(255,255,255,.07));
   --tint-y:linear-gradient(150deg,rgba(255,214,64,.95),rgba(255,176,0,.88));
   --inkc:rgba(255,255,255,.3); --chart-a:#8B5CF6; --chart-b:#FFD21F;
@@ -251,6 +251,24 @@ nav{position:fixed;top:14px;left:0;right:0;z-index:100;padding-inline:var(--gutt
 .mail{padding:19px 32px;font-size:clamp(13px,3.6vw,19px);max-width:100%;overflow-wrap:anywhere}
 .cta .socials{justify-content:center;margin-top:32px}
 .cta-glow{background:radial-gradient(700px 360px at 50% 0%,rgba(168,85,247,.55),transparent 70%),radial-gradient(520px 300px at 100% 100%,rgba(255,176,32,.28),transparent 70%),linear-gradient(135deg,var(--g1),var(--g2))}
+
+/* ══════════ PUMP: buttons "call" for a press ══════════ */
+@media (hover:hover) and (pointer:fine){
+  .btn,.mail,.buy,.icon-btn,.ico,.links a,.seg button,.panel .next,.feat-foot a{transition:background .4s var(--ease),box-shadow .4s var(--ease),scale .5s cubic-bezier(.34,1.8,.5,1),color .3s}
+  .btn:hover,.mail:hover,.buy:hover,.icon-btn:hover,.ico:hover,.panel .next:hover{animation:pump 1.1s cubic-bezier(.45,0,.35,1) infinite}
+  .links a:hover,.seg button:hover{scale:1.07}
+}
+@keyframes pump{0%{scale:1.07}22%{scale:1.14}44%{scale:1.075}66%{scale:1.12}100%{scale:1.07}}
+.btn:active,.mail:active,.buy:active{animation:none!important;scale:.94}
+/* idle heartbeat ring on main yellow buttons */
+.btn-y,.mail{animation:beckon 3.2s ease-in-out infinite}
+@keyframes beckon{0%,100%{box-shadow:0 14px 36px -14px var(--glow-y),0 0 0 0 rgba(255,210,31,0),inset 0 1px 0 rgba(255,255,255,.7)}50%{box-shadow:0 18px 44px -12px var(--glow-y),0 0 0 9px rgba(255,210,31,.14),inset 0 1px 0 rgba(255,255,255,.7)}}
+.btn-y:hover,.mail:hover{animation:pump 1.1s cubic-bezier(.45,0,.35,1) infinite}
+/* cursor light */
+#cglow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:1;opacity:0;transition:opacity .6s;mix-blend-mode:screen;
+  background:radial-gradient(circle,rgba(167,120,255,.28),rgba(255,210,31,.08) 45%,transparent 68%)}
+:root[data-theme="light"] #cglow{mix-blend-mode:multiply;background:radial-gradient(circle,rgba(139,92,246,.18),transparent 65%)}
+@media (prefers-reduced-motion:reduce){.btn-y,.mail,.btn:hover,.mail:hover,.buy:hover,.icon-btn:hover,.ico:hover{animation:none!important}#cglow{display:none}}
 
 /* ══════════ INNER PAGES ══════════ */
 .page{padding:clamp(124px,14vw,176px) 0 clamp(72px,10vw,120px);position:relative}
@@ -978,7 +996,7 @@ footer{position:relative;z-index:2;padding:clamp(20px,4vw,50px) 0 28px}
   var lenis=null;
   safe('lenis',function(){
     if(!anim||!window.Lenis) return;
-    lenis=new Lenis({lerp:.09,smoothWheel:true});
+    lenis=new Lenis({lerp:.075,smoothWheel:true});
     window.__lenis=lenis;
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(function(t){ lenis.raf(t*1000); });
@@ -1049,6 +1067,13 @@ footer{position:relative;z-index:2;padding:clamp(20px,4vw,50px) 0 28px}
     upd();
   });
 
+  /* cursor light that trails the pointer */
+  if(fine&&anim){
+    var cg=document.createElement('div'); cg.id='cglow'; cg.setAttribute('aria-hidden','true'); document.body.appendChild(cg);
+    var cx=gsap.quickTo(cg,'x',{duration:.9,ease:'power3.out'}), cy=gsap.quickTo(cg,'y',{duration:.9,ease:'power3.out'});
+    window.addEventListener('pointermove',function(e){ cg.style.opacity=1; cx(e.clientX); cy(e.clientY); },{passive:true});
+    document.addEventListener('pointerleave',function(){ cg.style.opacity=0; });
+  }
   /* gentle magnet on buttons, gentle tilt on cards */
   function magnet(els){
     if(!fine||!anim) return;
