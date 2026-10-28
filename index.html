@@ -503,6 +503,58 @@ html.scrolled .logo .ava{width:40px}
 html.scrolled .logo .ava{scale:1;rotate:0deg}
 .logo .ava img{object-position:50% 50%}
 
+/* ══════════ TYPE SCALE: calmer sizes lower down ══════════ */
+h2{font-size:clamp(28px,3.6vw,46px)}
+.big{font-size:clamp(24px,3.2vw,44px);max-width:30ch;line-height:1.16;letter-spacing:-.04em}
+.big .wd{opacity:.4}
+.kpi strong{font-size:clamp(28px,3.2vw,42px)}
+.cta h2{font-size:clamp(28px,3.8vw,48px)}
+.panel h3{font-size:clamp(28px,3.4vw,46px)}
+.mega{display:none}
+/* profile card socials */
+.feat-soc{display:flex;gap:12px;justify-content:center;position:relative;z-index:3;margin-top:-4px}
+.feat-soc .ico{width:42px;height:42px;font-size:16px;color:#fff}
+/* sponsors */
+.sp-h{font-size:clamp(24px,3vw,38px)}
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.sp-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:104px;padding:20px;border-radius:26px;text-decoration:none;color:var(--text);font-weight:800;font-size:18px;letter-spacing:-.02em;text-align:center;
+  background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 1.5px 1px var(--edge),0 0 0 1px rgba(170,130,255,.3),0 16px 30px -18px rgba(0,0,0,.6);transition:translate .5s cubic-bezier(.22,1.3,.36,1)}
+.sp-card:hover{translate:0 -4px}
+.sp-card img{max-width:130px;max-height:48px;object-fit:contain}
+.sp-card small{font-weight:500;font-size:12.5px;color:var(--muted)}
+/* mobile menu: solid enough to read */
+.menu{background:rgba(14,9,28,.95)!important;-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+:root[data-theme="light"] .menu{background:rgba(255,255,255,.96)!important}
+.menu a{color:var(--text)}
+/* store cards: more body in light mode */
+:root[data-theme="light"] .product{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(222,208,255,.55))}
+:root[data-theme="light"] .thumb{background:linear-gradient(160deg,#fff,#EFE7FF)}
+
+/* ══════════ FOOTER ══════════ */
+.sf{border-radius:36px;padding:clamp(28px,4vw,48px) clamp(22px,4vw,48px) 20px;color:var(--muted)}
+.sf-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:clamp(24px,4vw,56px)}
+.sf-name{display:inline-block;font-weight:800;font-size:20px;letter-spacing:.03em;color:var(--text);text-decoration:none;margin-bottom:12px}
+.sf-name span{color:var(--accent)}
+.sf-brand p{max-width:36ch;font-size:15px;line-height:1.6;margin-bottom:18px}
+.sf-brand .socials{gap:10px}
+.sf-brand .ico{width:42px;height:42px;font-size:17px}
+.sf-col{display:flex;flex-direction:column;gap:10px}
+.sf-col h4{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);opacity:.7;margin-bottom:6px;font-weight:700}
+.sf-col a{color:var(--muted);text-decoration:none;font-size:15px;width:fit-content;transition:color .25s,translate .4s var(--ease)}
+.sf-col a:hover{color:var(--text);translate:3px 0}
+.sf-bar{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;margin-top:clamp(24px,3vw,36px);padding-top:18px;border-top:1px solid var(--card-b);font-size:13.5px}
+@media(max-width:760px){.sf-grid{grid-template-columns:1fr 1fr}.sf-brand{grid-column:1/-1}}
+@media(max-width:420px){.sf-bar{flex-direction:column}}
+footer.site-foot{padding-bottom:clamp(24px,4vw,40px)}
+
+/* ══════════ GLASS BACK ON PHONES (bevel + glow, lighter blur only) ══════════ */
+@media (hover:none),(pointer:coarse){
+  .glass,.pill,.menu,.kpi,.tile,.product,.comment,.brief>div,.cta,.panel,.feat,.handle,.status,.chart-card,.row,.step,.seg,.links,#totop,.icon-btn,.ico,.btn-g,.feat-count,.pill-w{-webkit-backdrop-filter:blur(14px) saturate(170%);backdrop-filter:blur(14px) saturate(170%)}
+  .feat,.kpi,.tile,.cta,.product,.panel,.comment,.pill{box-shadow:inset 0 1.5px 1px rgba(255,255,255,.7),inset 0 0 0 6px rgba(255,255,255,.045),inset 0 -10px 26px -12px rgba(167,139,250,.35),0 0 0 1px rgba(190,150,255,.38),0 0 30px -8px rgba(139,92,246,.5),0 20px 40px -24px rgba(0,0,0,.7)}
+  :root[data-theme="light"] .feat,:root[data-theme="light"] .kpi,:root[data-theme="light"] .tile,:root[data-theme="light"] .cta,:root[data-theme="light"] .product,:root[data-theme="light"] .panel,:root[data-theme="light"] .comment,:root[data-theme="light"] .pill{box-shadow:inset 0 2px 1px rgba(255,255,255,.95),inset 0 0 0 6px rgba(255,255,255,.35),inset 0 -10px 24px -12px rgba(124,77,255,.25),0 0 0 1px rgba(150,110,255,.35),0 0 30px -8px rgba(124,77,255,.4),0 20px 40px -24px rgba(76,29,149,.4)}
+}
+
 /* ══════════ INNER PAGES ══════════ */
 .page{padding:clamp(124px,14vw,176px) 0 clamp(72px,10vw,120px);position:relative}
 .page-head{display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(36px,5vw,68px)}
@@ -743,11 +795,6 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
           <a class="btn btn-y" href="#/services">Work with me <i class="fas fa-arrow-right"></i></a>
           <a class="btn btn-g" href="#/insights">See my numbers</a>
         </div>
-        <div class="socials">
-          <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-        </div>
       </div>
       <div class="deck">
         <div class="ambient" aria-hidden="true"></div>
@@ -762,6 +809,11 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
             <h3>Tech Tips &amp; AI</h3>
             <div class="feat-meta"><span><i class="fas fa-lightbulb"></i>Tech tips</span><span><i class="fas fa-microchip"></i>AI tools</span><span><i class="fas fa-rocket"></i>Productivity</span></div>
           </div>
+          <div class="feat-soc">
+          <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
           <div class="feat-foot"><span>@techie.shiv</span><a href="#/services">Work with me <i class="fas fa-chevron-right"></i></a></div>
         </article>
         <div class="side side-r"><i class="fas fa-chart-simple"></i><small>Engagement rate</small><b data-stat="engagement" data-format="percent" data-val="10.7">10.7%</b></div>
@@ -781,7 +833,7 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     </div>
   </section>
 
-  <div class="chips" aria-hidden="true"><div class="chips-track"><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Think Tech. Think Shiv.</span></div></div>
+  <div class="chips" aria-hidden="true"><div class="chips-track"><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Simple tech, smarter you</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Simple tech, smarter you</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Simple tech, smarter you</span><span>Tech tips</span><span>AI tools</span><span>Productivity</span><span>Short-form reels</span><span>Simple tech, smarter you</span></div></div>
 
   <section class="statement">
     <div class="wrap">
@@ -789,7 +841,6 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     </div>
   </section>
 
-  <section class="mega" aria-hidden="true"><div class="mega-track"><span>THINK TECH.</span><span class="o">THINK SHIV.</span><span class="y"></span><span>THINK TECH.</span><span class="o">THINK SHIV.</span><span class="y"></span><span>THINK TECH.</span><span class="o">THINK SHIV.</span><span class="y"></span><span>THINK TECH.</span><span class="o">THINK SHIV.</span><span class="y"></span></div></section>
   <section class="home-sec">
     <div class="wrap">
       <div class="sec-top">
@@ -807,6 +858,13 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         <article class="panel tint-p" role="tabpanel" aria-hidden="true"><div><div class="panel-num">02 / 03</div><h3>AI tools</h3><p>Hands-on looks at the AI tools worth your time.</p><button class="next" type="button">Next <i class="fas fa-arrow-right"></i></button></div><div class="panel-art" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-chip"/></svg></div></article>
         <article class="panel tint-y y" role="tabpanel" aria-hidden="true"><div><div class="panel-num">03 / 03</div><h3>Productivity</h3><p>Things I wish I knew earlier, to learn faster and do more.</p><button class="next" type="button">Next <i class="fas fa-arrow-right"></i></button></div><div class="panel-art" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-rocket"/></svg></div></article>
       </div>
+    </div>
+  </section>
+
+  <section class="home-sec sponsors" id="sponsors" hidden>
+    <div class="wrap">
+      <div class="sec-top"><h2 class="sp-h">Brands I've worked with</h2><p class="lead">Trusted by brands that want to reach tech and AI audiences.</p></div>
+      <div class="sp-grid" id="spGrid"></div>
     </div>
   </section>
 
@@ -970,16 +1028,29 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 
 </main>
 
-<footer>
+<footer class="site-foot">
   <div class="wrap">
-    <div class="foot glass">
-      <span>© 2026 Shiv Rajpoot. Think Tech. Think Shiv.</span>
-      <a class="mailto" href="mailto:contact.shivrajpoot@gmail.com">contact.shivrajpoot@gmail.com</a>
-      <div class="socials">
-        <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    <div class="sf glass">
+      <div class="sf-grid">
+        <div class="sf-brand">
+          <a class="sf-name" href="#/home" aria-label="Techie Shiv, home">TECHIE <span>SHIV</span></a>
+          <p>Simple tech tips for a smarter you. Short-form tech and AI content, and brand collaborations.</p>
+          <div class="socials">
+            <a class="ico" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a class="ico" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a class="ico" href="https://t.me/techie_shiv" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          </div>
+        </div>
+        <div class="sf-col" role="navigation" aria-label="Explore">
+          <h4>Explore</h4>
+          <a href="#/home">Home</a><a href="#/insights">Insights</a><a href="#/store">Store</a>
+        </div>
+        <div class="sf-col" role="navigation" aria-label="Work together">
+          <h4>Work together</h4>
+          <a href="#/services">Services</a><a href="#/contact">Brand collaborations</a><a href="mailto:contact.shivrajpoot@gmail.com">Email me</a>
+        </div>
       </div>
+      <div class="sf-bar"><span>&copy; 2026 Shiv Kumar Singh (Techie Shiv). All rights reserved.</span><span>@techie.shiv</span></div>
     </div>
   </div>
 </footer>
@@ -1470,7 +1541,7 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
       var wd=$$('.wd',big);
       ScrollTrigger.create({trigger:big,start:'top 82%',end:'bottom 52%',scrub:true,onUpdate:function(self){
         var lit=clamp(self.progress*1.1,0,1)*wd.length;
-        wd.forEach(function(el,i){ el.style.opacity=(.18+.82*clamp(lit-i,0,1)).toFixed(3); });
+        wd.forEach(function(el,i){ el.style.opacity=(.4+.6*clamp(lit-i,0,1)).toFixed(3); });
       }});
     }
 
@@ -1623,5 +1694,22 @@ i.fa-bullhorn{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 })();
 
 </script>
-</body>
+<script>
+(function(){
+  var grid=document.getElementById('spGrid'), sec=document.getElementById('sponsors'); if(!grid||!sec) return;
+  fetch('sponsors.json?v='+Date.now(),{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
+    var list=(d&&d.sponsors)||[]; if(!list.length) return;
+    list.forEach(function(x){
+      if(!x||!x.name) return;
+      var a=document.createElement(x.link&&/^https?:/i.test(x.link)?'a':'div'); a.className='sp-card';
+      if(a.tagName==='A'){ a.href=x.link; a.target='_blank'; a.rel='noopener'; }
+      if(x.logo&&/^(https?:|[\w./-]+$)/i.test(x.logo)){ var im=document.createElement('img'); im.src=x.logo; im.alt=x.name; im.loading='lazy'; im.onerror=function(){ im.remove(); var s=document.createElement('span'); s.textContent=x.name; a.appendChild(s); }; a.appendChild(im); }
+      else { var sp=document.createElement('span'); sp.textContent=x.name; a.appendChild(sp); }
+      if(x.note){ var n=document.createElement('small'); n.textContent=x.note; a.appendChild(n); }
+      grid.appendChild(a);
+    });
+    if(grid.children.length){ sec.hidden=false; if(window.__prepare) window.__prepare(sec); if(window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); },200); }
+  }).catch(function(){});
+})();
+</script></body>
 </html>
