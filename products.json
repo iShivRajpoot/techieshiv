@@ -1,5 +1,5 @@
 {
-  "_how_to_add": "Copy one {...} block below, paste it after the last one with a comma between blocks, then change the values. Keep the quotes. oldPrice is optional.",
+  "_how_to_add": "Copy one {...} block, paste it after the last one with a comma between blocks, then change the values. Required: name, link. Optional: category (groups products and makes filter buttons), tag (small badge such as Affiliate, Sponsored, Community, Free), cta (button text, default View), price, oldPrice, description, note, image. Without an image a coloured letter is shown.",
   "products": [
     {
       "category": "Books",
@@ -9,7 +9,9 @@
       "oldPrice": 499,
       "image": "Zero to One.png",
       "imageFallback": "https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/Zero%20to%20One.png",
-      "link": "https://bitli.in/JTDobJx"
+      "link": "https://bitli.in/JTDobJx",
+      "tag": "Affiliate",
+      "cta": "Buy now"
     },
     {
       "category": "Books",
@@ -19,7 +21,9 @@
       "oldPrice": 599,
       "image": "The Hard Thing about Hard Thing.png",
       "imageFallback": "https://raw.githubusercontent.com/iShivRajpoot/iShivRajpoot.github.io/main/The%20Hard%20Thing%20about%20Hard%20Thing.png",
-      "link": "https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/"
+      "link": "https://www.amazon.in/Hard-Thing-about-Building-Business/dp/3443952003/",
+      "tag": "Affiliate",
+      "cta": "Buy now"
     }
   ]
 }

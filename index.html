@@ -555,6 +555,73 @@ footer.site-foot{padding-bottom:clamp(24px,4vw,40px)}
   :root[data-theme="light"] .feat,:root[data-theme="light"] .kpi,:root[data-theme="light"] .tile,:root[data-theme="light"] .cta,:root[data-theme="light"] .product,:root[data-theme="light"] .panel,:root[data-theme="light"] .comment,:root[data-theme="light"] .pill{box-shadow:inset 0 2px 1px rgba(255,255,255,.95),inset 0 0 0 6px rgba(255,255,255,.35),inset 0 -10px 24px -12px rgba(124,77,255,.25),0 0 0 1px rgba(150,110,255,.35),0 0 30px -8px rgba(124,77,255,.4),0 20px 40px -24px rgba(76,29,149,.4)}
 }
 
+/* ══════════ CONTRAST FIXES ══════════ */
+:root[data-theme="light"]{--tint-p:linear-gradient(150deg,#7C4DFF,#5B2BD6 62%,#6A38E3)}
+:root[data-theme="light"] .feat{background:linear-gradient(150deg,#7C4DFF,#5B2BD6 62%,#6A38E3)}
+:root[data-theme="dark"] .feat{background:linear-gradient(150deg,rgba(150,100,255,.62),rgba(80,40,190,.5) 58%,rgba(255,255,255,.1))}
+.feat-count,.pill-w{background:linear-gradient(135deg,rgba(20,6,60,.5),rgba(20,6,60,.34))!important;color:#fff!important}
+.pill-w:hover{background:linear-gradient(135deg,rgba(20,6,60,.62),rgba(20,6,60,.46))!important}
+.panel-num{color:rgba(255,255,255,.92);font-weight:800}
+.panel p{color:#fff}
+:root[data-theme="light"] .tile.t-a p,:root[data-theme="light"] .tile.t-a h3{color:#fff}
+.feat-meta,.feat-foot,.feat-loc{color:#fff}
+.feat-foot span{opacity:.95}
+.sf,.sf p,.sf-bar{color:var(--muted)}
+:root[data-theme="dark"]{--muted:#CFC9E6}
+:root[data-theme="light"]{--muted:#4B4668}
+
+/* ══════════ LIVE STATS: bento layout ══════════ */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.kpi{position:relative;border-radius:34px;padding:clamp(20px,2.4vw,30px);min-height:clamp(150px,15vw,190px);justify-content:space-between;gap:18px;overflow:hidden}
+.kpi .k-ico{margin-bottom:0;width:48px;height:48px}
+.kpi strong{margin-top:auto;font-size:clamp(32px,3.4vw,46px);letter-spacing:-.05em;line-height:1}
+.kpi .k-l{font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.01em}
+.kpi:nth-child(1){grid-column:span 2;grid-row:span 2;min-height:clamp(300px,31vw,390px);
+  background-image:radial-gradient(circle at 88% 12%,rgba(255,210,31,.22),transparent 46%),radial-gradient(circle at 10% 100%,rgba(139,92,246,.35),transparent 55%),linear-gradient(135deg,var(--g1),var(--g2) 48%,rgba(255,255,255,.09))}
+.kpi:nth-child(1) strong{font-size:clamp(56px,8vw,112px)}
+.kpi:nth-child(1) .k-l{font-size:16px}
+.kpi:nth-child(1) .k-l::after{content:"LIVE";margin-left:10px;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.12em;color:#06260F;background:#7CFFB2;vertical-align:2px}
+.kpi:nth-child(4){grid-column:span 2}
+@media(max-width:899px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .kpi:nth-child(1){grid-column:1/-1;grid-row:auto;min-height:220px}
+  .kpi:nth-child(1) strong{font-size:clamp(52px,16vw,84px)}
+  .kpi:nth-child(4){grid-column:1/-1}
+  .kpi{min-height:130px;border-radius:28px;padding:18px}
+  .kpi strong{font-size:clamp(30px,9vw,40px)}
+}
+.kpi-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-bottom:18px}
+.live{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:13.5px;color:var(--text);
+  background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:inset 0 1px 0 var(--edge),0 0 0 1px rgba(170,130,255,.3)}
+.live .dot{width:8px;height:8px;border-radius:50%;background:#7CFFB2;box-shadow:0 0 0 0 rgba(124,255,178,.7);animation:pingdot 2s ease-out infinite}
+.updated{font-size:13.5px;color:var(--muted)}
+
+/* ══════════ PICKS PAGE ══════════ */
+.disc{margin-top:12px;max-width:62ch;font-size:13.5px;color:var(--muted);line-height:1.55}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px}
+.filters button{border:0;cursor:pointer;font:inherit;font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;color:var(--text);
+  background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:inset 0 1px 0 var(--edge),0 0 0 1px rgba(170,130,255,.28);transition:background .3s,color .3s,scale .4s cubic-bezier(.22,1.3,.36,1)}
+.filters button:hover{scale:1.04}
+.filters button[aria-pressed="true"]{background:linear-gradient(180deg,#FFE452,#FFC400);color:#15110A;box-shadow:0 10px 24px -10px var(--glow-y),inset 0 1px 0 rgba(255,255,255,.7)}
+.thumb{position:relative}
+.p-badge{position:absolute;left:12px;top:12px;z-index:2;padding:5px 11px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#fff;background:rgba(20,6,60,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.p-badge.sp{background:linear-gradient(180deg,#FFE452,#FFC400);color:#15110A}
+.thumb.ph{display:grid;place-items:center;font-size:44px;font-weight:800;color:rgba(255,255,255,.9);background:linear-gradient(145deg,#8B5CF6,#4C1D95)}
+.p-note{font-size:12.5px;color:var(--muted);margin-top:-4px}
+
+/* ══════════ PHONES: lighter paint, same look ══════════ */
+@media (hover:none),(pointer:coarse){
+  html{-webkit-tap-highlight-color:transparent}
+  a,button,summary{touch-action:manipulation}
+  .kpi,.tile,.product,.comment,.brief>div,.panel,.row,.step,.res,.faq details,.sp-card,.chips span,.links,.handle,.status,.chart-card,.icon-btn,.ico,.btn-g,.about-card,.cta,.sf,.glass,.seg,.filters button{
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .kpi,.tile:not(.t-a):not(.t-d),.product,.comment,.brief>div,.row,.step,.res,.faq details,.sp-card,.about-card,.cta,.sf,.glass{
+    background-color:rgba(255,255,255,.07)}
+  :root[data-theme="light"] .kpi,:root[data-theme="light"] .tile:not(.t-a):not(.t-d),:root[data-theme="light"] .product,:root[data-theme="light"] .comment,:root[data-theme="light"] .row,:root[data-theme="light"] .step,:root[data-theme="light"] .res,:root[data-theme="light"] .faq details,:root[data-theme="light"] .sp-card,:root[data-theme="light"] .about-card,:root[data-theme="light"] .cta,:root[data-theme="light"] .sf,:root[data-theme="light"] .glass{background-color:rgba(255,255,255,.45)}
+  .reveal{transition-duration:.6s!important}
+}
+.product .thumb.ph{background:linear-gradient(145deg,#8B5CF6,#4C1D95)!important;color:#fff!important;font-size:48px}
+
 /* ══════════ INNER PAGES ══════════ */
 .page{padding:clamp(124px,14vw,176px) 0 clamp(72px,10vw,120px);position:relative}
 .page-head{display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(36px,5vw,68px)}
@@ -789,6 +856,9 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 @media(max-width:820px){.sub-band{grid-template-columns:1fr}.sub-form{min-width:0}}
 @media(max-width:420px){.sub-form{flex-direction:column}.sub-form input[type=email]{flex:none;width:100%}.sub-form .btn{width:100%}}
 @media(max-width:1000px){.links a{padding-inline:12px}}
+.sub-alt{display:flex;flex-wrap:wrap;gap:10px}
+.sub-alt .btn{padding:14px 22px;font-size:15px}
+@media(max-width:820px){.sub-alt{width:100%}.sub-alt .btn{flex:1 1 100%}}
 </style>
 </head>
 
@@ -816,7 +886,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
         <a href="#/about" data-route="about">About</a>
   <a href="#/services" data-route="services">Services</a>
         <a href="#/insights" data-route="insights">Insights</a>
-        <a href="#/store" data-route="store">Store</a>
+        <a href="#/store" data-route="store">Picks</a>
         <a href="#/contact" data-route="contact">Contact</a>
       </div>
       <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch light and dark theme"><i class="fas fa-circle-half-stroke"></i></button>
@@ -830,7 +900,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
   <a href="#/about" data-route="about">About</a>
   <a href="#/services" data-route="services">Services</a>
   <a href="#/insights" data-route="insights">Insights</a>
-  <a href="#/store" data-route="store">Store</a>
+  <a href="#/store" data-route="store">Picks</a>
   <a href="#/contact" data-route="contact">Contact</a>
 </div>
 
@@ -922,7 +992,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
         <a class="res glass" href="https://t.me/techie_shiv" target="_blank" rel="noopener"><span class="r-ico"><i class="fab fa-telegram-plane"></i></span><div><h3>Telegram channel</h3><p>Tips, tools and updates in one place. Join for the quickest updates.</p></div><i class="fas fa-arrow-right go"></i></a>
         <a class="res glass" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener"><span class="r-ico"><i class="fab fa-instagram"></i></span><div><h3>Instagram reels</h3><p>Short tech and AI tips in Hinglish. Easy to follow and quick to try.</p></div><i class="fas fa-arrow-right go"></i></a>
         <a class="res glass" href="https://www.youtube.com/@techie.shiv." target="_blank" rel="noopener"><span class="r-ico"><i class="fab fa-youtube"></i></span><div><h3>YouTube</h3><p>Videos for when you want to go a little deeper.</p></div><i class="fas fa-arrow-right go"></i></a>
-        <a class="res glass" href="#/store"><span class="r-ico"><i class="fas fa-tag"></i></span><div><h3>Recommended books</h3><p>Books I recommend, with links to buy.</p></div><i class="fas fa-arrow-right go"></i></a>
+        <a class="res glass" href="#/store"><span class="r-ico"><i class="fas fa-tag"></i></span><div><h3>My picks</h3><p>Products, tools and resources I recommend.</p></div><i class="fas fa-arrow-right go"></i></a>
       </div>
     </div>
   </section>
@@ -1065,13 +1135,15 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 </div>
 
 <!-- ═════════ STORE ═════════ -->
-<div class="view" id="view-store" data-desc="Books recommended by Techie Shiv. Affiliate links." data-title="Store" hidden>
+<div class="view" id="view-store" data-desc="Products, tools and resources recommended by Techie Shiv: affiliate picks, community essentials and brand partners." data-title="Picks" hidden>
   <section class="page">
     <div class="wrap">
       <div class="page-head">
-        <h2>Store</h2>
-        <p class="lead">Books I recommend. Tap Buy now to open the seller's page.</p>
+        <h2>My picks</h2>
+        <p class="lead">Products, tools and resources I recommend: affiliate picks, community essentials and brand partners.</p>
+        <p class="disc">Some links are affiliate or sponsored. If you buy through them I may earn a small commission, at no extra cost to you.</p>
       </div>
+      <div id="filters" class="filters" hidden></div>
       <div id="catalog">
       <h3 class="sub" style="margin-top:0">Books</h3>
       <div class="products">
@@ -1143,12 +1215,13 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
   <div class="wrap">
     <div class="sf glass">
       <div class="sub-band">
-        <div class="sub-copy"><h3>Get new tech tips first</h3><p>One short email when something worth knowing drops. No spam.</p></div>
-        <form id="subForm" class="sub-form" data-endpoint="" novalidate>
+        <div class="sub-copy"><h3 id="subH">Get new tech tips first</h3><p id="subP">One short email when something worth knowing drops. No spam.</p></div>
+        <form id="subForm" class="sub-form" novalidate>
           <input type="email" name="email" placeholder="Your email" aria-label="Email address" autocomplete="email" required>
           <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
           <button class="btn btn-y" type="submit">Subscribe</button>
         </form>
+        <div class="sub-alt" id="subAlt" hidden><a class="btn btn-y" href="https://t.me/techie_shiv" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Join Telegram</a><a class="btn btn-g" href="https://www.instagram.com/techie.shiv/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Follow on Instagram</a></div>
         <p class="sub-msg" id="subMsg" role="status" aria-live="polite"></p>
       </div>
       <div class="sf-grid">
@@ -1163,7 +1236,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
         </div>
         <div class="sf-col" role="navigation" aria-label="Explore">
           <h4>Explore</h4>
-          <a href="#/home">Home</a><a href="#/about">About me</a><a href="#/insights">Insights</a><a href="#/store">Store</a>
+          <a href="#/home">Home</a><a href="#/about">About me</a><a href="#/insights">Insights</a><a href="#/store">Picks</a>
         </div>
         <div class="sf-col" role="navigation" aria-label="Work together">
           <h4>Work together</h4>
@@ -1385,21 +1458,27 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 })();
 
 
-/* ── STORE CATALOG: reads products.json (the built-in cards stay if the file is missing or empty) ── */
+/* ── PICKS CATALOG: reads products.json (built-in cards stay if the file is missing or empty) ── */
 (function(){
-  var box=document.getElementById('catalog'); if(!box) return;
+  var box=document.getElementById('catalog'), fbar=document.getElementById('filters'); if(!box) return;
   function safeUrl(u){ return typeof u==='string'&&/^https?:\/\//i.test(u); }
   function el(tag,cls,text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
   function money(v){ return typeof v==='number'?'₹'+v.toLocaleString('en-IN'):String(v); }
   function card(p){
-    var art=el('article','product'), th=el('div','thumb'), img=document.createElement('img');
-    img.src=p.image||''; img.alt=p.alt||p.name; img.loading='lazy'; img.decoding='async';
-    if(p.imageFallback){ img.onerror=function(){ img.onerror=null; img.src=p.imageFallback; }; }
-    th.appendChild(img); art.appendChild(th);
+    var art=el('article','product'), th=el('div','thumb');
+    if(p.image){
+      var img=document.createElement('img'); img.src=p.image; img.alt=p.alt||p.name; img.loading='lazy'; img.decoding='async';
+      var fail=function(){ img.remove(); th.className+=' ph'; th.insertBefore(document.createTextNode((p.name||'?').trim().charAt(0).toUpperCase()),th.firstChild); };
+      img.onerror=function(){ if(p.imageFallback){ img.onerror=fail; img.src=p.imageFallback; } else fail(); };
+      th.appendChild(img);
+    } else { th.className+=' ph'; th.textContent=(p.name||'?').trim().charAt(0).toUpperCase(); }
+    if(p.tag){ th.appendChild(el('span','p-badge'+(/sponsor|ad|partner/i.test(p.tag)?' sp':''),p.tag)); }
+    art.appendChild(th);
     var body=el('div','p-body');
     body.appendChild(el('div','p-tag',p.category||'Product'));
     body.appendChild(el('div','p-name',p.name));
     if(p.description) body.appendChild(el('p','p-desc',p.description));
+    if(p.note) body.appendChild(el('p','p-note',p.note));
     var foot=el('div','p-foot');
     if(p.price!==undefined&&p.price!==null&&p.price!==''){
       var price=el('div','price',money(p.price));
@@ -1407,7 +1486,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
       foot.appendChild(price);
     }
     var buy=el('a','buy'); buy.href=p.link; buy.target='_blank'; buy.rel='noopener sponsored';
-    buy.appendChild(document.createTextNode('Buy now ')); buy.appendChild(el('i','fas fa-arrow-right'));
+    buy.appendChild(document.createTextNode((p.cta||'View')+' ')); buy.appendChild(el('i','fas fa-arrow-right'));
     foot.appendChild(buy); body.appendChild(foot); art.appendChild(body);
     return art;
   }
@@ -1419,16 +1498,29 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
       var groups={}, order=[];
       list.forEach(function(p){ var c=p.category||'Products'; if(!groups[c]){ groups[c]=[]; order.push(c); } groups[c].push(p); });
       box.textContent='';
+      var secs={};
       order.forEach(function(c){
-        box.appendChild(el('h3','sub',c));
-        var grid=el('div','products');
-        groups[c].forEach(function(p){ grid.appendChild(card(p)); });
-        box.appendChild(grid);
+        var sec=el('div','pick-sec'); sec.appendChild(el('h3','sub',c));
+        var grid=el('div','products'); groups[c].forEach(function(p){ grid.appendChild(card(p)); });
+        sec.appendChild(grid); box.appendChild(sec); secs[c]=sec;
       });
+      if(fbar&&order.length>1){
+        fbar.hidden=false; fbar.textContent='';
+        ['All'].concat(order).forEach(function(c,k){
+          var b=el('button',null,c); b.type='button'; b.setAttribute('aria-pressed',k===0?'true':'false');
+          b.addEventListener('click',function(){
+            fbar.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed',x===b?'true':'false'); });
+            order.forEach(function(o){ secs[o].hidden=(c!=='All'&&o!==c); });
+          });
+          fbar.appendChild(b);
+        });
+      }
       if(window.__prepare) window.__prepare(box);
+      if(window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); },250);
     })
     .catch(function(){ /* keep the built-in cards */ });
 })();
+
 
 
 /* ── STAGE: smooth scroll, soft page transitions, tabs, glass light, calm parallax ── */
@@ -1661,7 +1753,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
       var wd=$$('.wd',big);
       ScrollTrigger.create({trigger:big,start:'top 82%',end:'bottom 52%',scrub:true,onUpdate:function(self){
         var lit=clamp(self.progress*1.1,0,1)*wd.length;
-        wd.forEach(function(el,i){ el.style.opacity=(.4+.6*clamp(lit-i,0,1)).toFixed(3); });
+        wd.forEach(function(el,i){ el.style.opacity=(.55+.45*clamp(lit-i,0,1)).toFixed(3); });
       }});
     }
 
@@ -1719,18 +1811,6 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
       var mk=gsap.quickTo(mt,'skewX',{duration:.5,ease:'power3.out'}), mb;
       lenis.on('scroll',function(e){ mk(clamp(e.velocity*.6,-10,10)); clearTimeout(mb); mb=setTimeout(function(){ mk(0); },120); });
     }
-    /* sparklines draw in on each stat card */
-    var shapes=[[28,24,26,18,20,10,12,4],[30,26,28,20,22,16,12,6],[26,28,20,22,14,16,8,5],[22,26,18,24,12,14,10,3]];
-    $$('.kpi').forEach(function(k,i){
-      var s=shapes[i%4], pts=s.map(function(y,j){ return [j*(96/7),y]; });
-      var d='M'+pts.map(function(p){ return p[0].toFixed(1)+' '+p[1]; }).join(' L');
-      var svg=document.createElementNS('http://www.w3.org/2000/svg','svg'); svg.setAttribute('class','spark'); svg.setAttribute('viewBox','0 0 96 38'); svg.setAttribute('aria-hidden','true');
-      svg.innerHTML='<path d="'+d+'"/>';
-      k.appendChild(svg);
-      var p=svg.firstChild, L=p.getTotalLength?p.getTotalLength():120;
-      gsap.set(p,{strokeDasharray:L,strokeDashoffset:L});
-      ScrollTrigger.create({trigger:k,start:'top 88%',once:true,onEnter:function(){ gsap.to(p,{strokeDashoffset:0,duration:1.6,ease:'power2.inOut',delay:.15+i*.12}); }});
-    });
     /* cursor dot + ring */
     if(fine){
       var c1=document.createElement('div'), c2=document.createElement('div'); c1.id='cur'; c2.id='cur2'; document.body.appendChild(c2); document.body.appendChild(c1);
@@ -1834,18 +1914,20 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 </script><script>
 (function(){
   var a=document.getElementById('aboutImg'), h=document.querySelector('.feat-photo img'); if(a&&h) a.src=h.src;
-  var f=document.getElementById('subForm'), m=document.getElementById('subMsg'); if(!f) return;
-  var MAIL="contact.shivrajpoot@gmail.com";
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var email=(f.email.value||'').trim(); if(f.company&&f.company.value) return;
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ m.textContent='Please enter a valid email address.'; return; }
-    var ep=f.getAttribute('data-endpoint');
-    if(!ep){ m.textContent='Opening your email app to confirm your subscription…'; location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Subscribe me')+'&body='+encodeURIComponent('Please add this email to your list: '+email); return; }
-    var btn=f.querySelector('button'); btn.disabled=true; m.textContent='Subscribing…';
-    var fd=new FormData(); fd.append('email',email);
-    fetch(ep,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(r){ if(!r.ok) throw 0; f.reset(); m.textContent='You are in. Thank you!'; }).catch(function(){ m.textContent='Something went wrong. Please try again or email me.'; }).then(function(){ btn.disabled=false; });
-  });
+  var f=document.getElementById('subForm'), m=document.getElementById('subMsg'), alt=document.getElementById('subAlt'); if(!f) return;
+  function noEmail(){ f.hidden=true; alt.hidden=false; var h=document.getElementById('subH'), p=document.getElementById('subP'); if(h) h.textContent='Never miss a new tip'; if(p) p.textContent='Join my Telegram channel for instant updates, or follow me on Instagram.'; }
+  fetch('config.json?v='+Date.now(),{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(c){
+    var sc=(c&&c.subscribe)||{}; if(!sc.action||!/^https:\/\//i.test(sc.action)){ noEmail(); return; }
+    var fr=document.createElement('iframe'); fr.name='subFrame'; fr.hidden=true; fr.title='subscribe'; document.body.appendChild(fr);
+    f.action=sc.action; f.method='post'; f.target='subFrame'; f.querySelector('input[type=email]').name=sc.field||'email';
+    Object.keys(sc.hidden||{}).forEach(function(k){ var i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=sc.hidden[k]; f.appendChild(i); });
+    f.addEventListener('submit',function(e){
+      var email=(f.querySelector('input[type=email]').value||'').trim();
+      if((f.company&&f.company.value)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ e.preventDefault(); if(!(f.company&&f.company.value)) m.textContent='Please enter a valid email address.'; return; }
+      m.textContent='Subscribing…';
+      setTimeout(function(){ m.textContent='Thank you! Please check your inbox to confirm your email.'; f.reset(); },1200);
+    });
+  }).catch(noEmail);
 })();
 </script></body>
 </html>
