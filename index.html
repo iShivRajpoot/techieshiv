@@ -1916,7 +1916,7 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
   var a=document.getElementById('aboutImg'), h=document.querySelector('.feat-photo img'); if(a&&h) a.src=h.src;
   var f=document.getElementById('subForm'), m=document.getElementById('subMsg'), alt=document.getElementById('subAlt'); if(!f) return;
   function noEmail(){ f.hidden=true; alt.hidden=false; var h=document.getElementById('subH'), p=document.getElementById('subP'); if(h) h.textContent='Never miss a new tip'; if(p) p.textContent='Join my Telegram channel for instant updates, or follow me on Instagram.'; }
-  fetch('config.json?v='+Date.now(),{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(c){
+  fetch('subscribe.json?v='+Date.now(),{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(c){
     var sc=(c&&c.subscribe)||{}; if(!sc.action||!/^https:\/\//i.test(sc.action)){ noEmail(); return; }
     var fr=document.createElement('iframe'); fr.name='subFrame'; fr.hidden=true; fr.title='subscribe'; document.body.appendChild(fr);
     f.action=sc.action; f.method='post'; f.target='subFrame'; f.querySelector('input[type=email]').name=sc.field||'email';
