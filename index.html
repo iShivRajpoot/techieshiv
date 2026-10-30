@@ -1548,7 +1548,13 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
     gsap.ticker.add(function(t){ lenis.raf(t*1000); });
     gsap.ticker.lagSmoothing(0);
   });
-  function scrollTop(){ if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); else window.scrollTo(0,0); }
+  try{ history.scrollRestoration='manual'; }catch(e){}
+  function scrollTop(){
+    function hard(){ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; }
+    if(lenis) lenis.scrollTo(0,{immediate:true,force:true});
+    hard(); requestAnimationFrame(hard); setTimeout(hard,80);
+  }
+  function softTop(){ if(lenis) lenis.scrollTo(0,{duration:1}); else window.scrollTo({top:0,behavior:reduced?'auto':'smooth'}); }
 
   /* colour field: follows the mouse a little and drifts with scroll */
   safe('bg',function(){
@@ -1678,7 +1684,8 @@ i.fa-location-dot{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
   }
   function go(name,push){
     if(names.indexOf(name)<0) name='home';
-    if(name===current||busy){ setMenu(false); return; }
+    if(busy){ setMenu(false); return; }
+    if(name===current){ setMenu(false); softTop(); return; }
     function pushIt(){ if(push){ try{ history.pushState({page:name},'','#/'+name); }catch(e){} } }
     if(!anim){ show(name); pushIt(); return; }
     busy=true; setMenu(false);
